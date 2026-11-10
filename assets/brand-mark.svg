@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" shape-rendering="crispEdges">
+  <title>Faccin OS</title>
+  <path fill="#102e3b" d="M16 5h45v43H16z"/>
+  <path fill="#aebcb8" d="M16 5h43v41H16z"/>
+  <path fill="#f6f2df" d="M16 5h43v2H18v39h-2z"/>
+  <path fill="#718d89" d="M20 11h35v31H20z"/>
+  <path fill="#d9e1d3" d="M20 11h35v5H20z"/>
+  <path fill="#102e3b" d="M3 17h46v43H3z"/>
+  <path fill="#c5cec1" d="M3 17h44v41H3z"/>
+  <path fill="#fffbea" d="M3 17h44v2H5v39H3z"/>
+  <path fill="#7d938a" d="M45 19h2v39H5v-2h40z"/>
+  <path fill="#173c75" d="M8 23h33v6H8z"/>
+  <path fill="#e9e9d9" d="M34 24h5v3h-5z"/>
+  <path fill="#09696a" d="M8 32h33v20H8z"/>
+  <path fill="#f1e4b6" d="M17 35h17v4H21v3h10v4H21v6h-4z"/>
+  <path fill="#102e3b" d="M50 51h5v5h-5z"/>
+  <path fill="#e6dbb5" d="M52 49h5v5h-5z"/>
+</svg>

@@ -27,6 +27,7 @@
     training: { title: 'Formazione', windowTitle: 'Formazione e competenze', icon: 'training', route: 'formazione' },
     certifications: { title: 'Certificazioni', windowTitle: 'Certificazioni Microsoft', icon: 'certificate', route: 'certificazioni' },
     career: { title: 'Percorso', windowTitle: 'Esperienza e studi', icon: 'academic', route: 'percorso' },
+    sport: { title: 'Sport', windowTitle: 'Sport e passioni', icon: 'running', route: 'sport' },
     contact: { title: 'Contatti', windowTitle: 'Restiamo in contatto', icon: 'contact', route: 'contatti' },
     help: { title: 'Guida a Faccin OS', windowTitle: 'Informazioni su Faccin OS', icon: 'help', route: 'help' },
     settings: { title: 'Aspetto desktop', windowTitle: 'Proprietà del desktop', icon: 'settings', route: 'impostazioni' }
@@ -45,7 +46,7 @@
         <p class="hero-copy">Trasformo esigenze reali in <strong>soluzioni AI, software e automazioni.</strong> E aiuto le persone a usarle, con corsi e workshop.</p>
         <div class="hero-actions">${routeButton('progetti/professionali', 'Esplora il mio lavoro', 'primary-button', 'projects')}${routeButton('formazione', 'Formazione ai clienti', 'retro-button', 'training')}</div>
       </div>
-      <aside class="profile-stamp"><span class="stamp-label">PERSONAL FILE</span><div class="stamp-monogram" aria-hidden="true">PF<span>_</span></div><strong>Pierluca Faccin</strong><span>AI Solution Engineer</span><span class="stamp-location">Valdagno, Italia</span><div class="stamp-footer">SOFTWARE · AI · PERSONE</div></aside>
+      <aside class="profile-stamp"><span class="stamp-label">PERSONAL FILE</span><div class="stamp-portrait"><img src="assets/pierluca-win95.png" alt="Ritratto di Pierluca Faccin in stile bitmap anni Novanta" width="1024" height="1024" decoding="async"></div><strong>Pierluca Faccin</strong><span class="stamp-role">AI Solution Engineer</span><span class="stamp-location">Valdagno, Italia</span><div class="stamp-footer">SOFTWARE · AI · PERSONE</div></aside>
     </div>
     <div class="home-columns">
       <section class="home-section"><div class="section-heading"><h2>Il lavoro, in pratica.</h2><span>EURO INFORMATICA</span></div>
@@ -54,7 +55,7 @@
       <section class="training-teaser"><div class="section-heading"><h2>Dalla pratica, all’aula.</h2>${icon('training', 28)}</div><p>Spiego temi complessi, guido attività pratiche e ascolto le esigenze dei clienti. Un lavoro che unisce tecnologia, comunicazione e relazione.</p><div class="teaser-topics"><span>Public speaking</span><span>Chiarezza</span><span>Ascolto</span></div>${routeButton('formazione', 'Il mio ruolo nella formazione', 'text-button', 'arrow')}</section>
     </div>
     <button class="certificate-strip" type="button" data-route="certificazioni">${icon('certificate', 28)}<span><strong>Certificazioni Microsoft</strong><span>AI-102 · Azure AI Engineer Associate &nbsp; / &nbsp; AI-900 · Azure AI Fundamentals</span></span>${icon('arrow',16)}</button>
-    <div class="intro-note"><span>Esplora anche</span>${routeButton('progetti/personali', 'Progetti personali', 'text-button')}${routeButton('progetti/universita', 'Università e ricerca', 'text-button')}${routeButton('contatti', 'Contattami', 'text-button')}</div>`;
+    <div class="intro-note"><span>Esplora anche</span>${routeButton('progetti/personali', 'Progetti personali', 'text-button')}${routeButton('progetti/universita', 'Università e ricerca', 'text-button')}${routeButton('sport', 'Sport e passioni', 'text-button')}${routeButton('contatti', 'Contattami', 'text-button')}</div>`;
   }
 
   function projectsView(category = 'professional') {
@@ -110,7 +111,7 @@
       <section class="timeline-item"><div class="timeline-date">2021 — 2024</div><div class="timeline-content"><h2>Artificial Intelligence Systems</h2><h3>Laurea magistrale · Università di Trento</h3><p>Un percorso tra machine learning, linguaggio naturale, visione e pianificazione automatica, accompagnato da progetti e attività di ricerca.</p>${routeButton('progetti/universita', 'Esplora università e ricerca', 'text-button', 'academic')}</div></section>
       <section class="timeline-item"><div class="timeline-date">2022</div><div class="timeline-content"><h2>Industrial AI Challenge</h2><h3>Team vincitore · Pulsar Industry</h3><p>Machine learning applicato a una linea produttiva: un’esperienza di collaborazione tra ricerca e problema industriale.</p>${routeButton('progetto/pulsar-industry', 'Apri il progetto', 'text-button', 'document')}</div></section>
       <section class="timeline-item"><div class="timeline-date">2018 — 2021</div><div class="timeline-content"><h2>Informatica</h2><h3>Laurea · Università di Trento</h3><p>Le basi della programmazione, degli algoritmi e dei sistemi su cui ho costruito il mio percorso.</p></div></section>
-      </div><section class="off-duty"><div>${icon('running', 40)}</div><div><h2>Fuori dall’ufficio, corro.</h2><p>Anche una passione può diventare un progetto. Ho sviluppato un’applicazione per organizzare gli allenamenti e tenere un diario di corsa.</p>${routeButton('progetto/lisbona21k', 'Scopri Lisbona 21K', 'text-button', 'arrow')}</div></section></div>`;
+      </div><section class="off-duty"><div>${icon('running', 40)}</div><div><h2>Lo sport, da sempre.</h2><p>Il calcio e l’Inter fin da piccolo, gli anni del padel, la palestra, la bici e la corsa. Oggi un nuovo obiettivo: completare le SuperHalfs, partendo da Copenaghen a settembre 2027.</p>${routeButton('sport', 'Le mie passioni, fuori dall’ufficio', 'text-button', 'arrow')}</div></section></div>`;
   }
 
   function contactView() {
@@ -137,9 +138,9 @@
       const category = Object.keys(categories).find(key => categories[key].route === item) || 'professional';
       return { id: 'projects', title: apps.projects.windowTitle, icon:'projects', breadcrumb:`Progetti / ${categories[category].label}`, html:() => projectsView(category), status: `${projects.filter(project => project.category === category).length} progetti · ${categories[category].subtitle}` };
     }
-    const key = {home:'home',formazione:'training',certificazioni:'certifications',percorso:'career',contatti:'contact',help:'help',impostazioni:'settings'}[section] || 'home';
-    const renderers = {home:homeView,training:trainingView,certifications:certificationsView,career:careerView,contact:contactView,help:helpView,settings:settingsView};
-    const status = {home:'Soluzioni AI, software e formazione',training:'Tecnologia, comunicazione e relazione con i clienti',certifications:'2 certificazioni Microsoft',career:'Esperienza, studi e ricerca',contact:'Valdagno (VI), Italia',help:'Un clic per aprire. Tutto il tempo per esplorare.',settings:'Preferenze del desktop'};
+    const key = {home:'home',formazione:'training',certificazioni:'certifications',percorso:'career',sport:'sport',contatti:'contact',help:'help',impostazioni:'settings'}[section] || 'home';
+    const renderers = {home:homeView,training:trainingView,certifications:certificationsView,career:careerView,sport:() => window.renderFaccinSport({icon,routeButton,esc}),contact:contactView,help:helpView,settings:settingsView};
+    const status = {home:'Soluzioni AI, software e formazione',training:'Tecnologia, comunicazione e relazione con i clienti',certifications:'2 certificazioni Microsoft',career:'Esperienza, studi e ricerca',sport:'Calcio, padel, palestra, bici e corsa · Obiettivo SuperHalfs',contact:'Valdagno (VI), Italia',help:'Un clic per aprire. Tutto il tempo per esplorare.',settings:'Preferenze del desktop'};
     return {id:key,title:apps[key].windowTitle,icon:apps[key].icon,breadcrumb:apps[key].title,html:renderers[key],status:status[key]};
   }
 
@@ -252,8 +253,9 @@
     document.querySelectorAll('[data-theme]').forEach(button => { if (button.tagName === 'BUTTON') button.setAttribute('aria-pressed',String(button.dataset.theme === selected)); });
   }
 
-  document.getElementById('desktop-icons').innerHTML = ['home','projects','training','certifications','career','contact'].map(key => `<button class="desktop-icon" type="button" data-route="${apps[key].route}"><span class="icon">${icon(apps[key].icon,40)}</span><span>${apps[key].title}</span></button>`).join('');
-  startMenu.innerHTML = `<div class="start-brand">Faccin<span>OS</span></div><div class="start-items"><div class="start-identity"><strong>Pierluca Faccin</strong><span>AI Solution Engineer</span></div>${['home','projects','training','certifications','career','contact'].map(key => routeButton(apps[key].route,apps[key].title,'start-item',apps[key].icon)).join('')}<hr>${routeButton('impostazioni','Aspetto desktop','start-item','settings')}${routeButton('help','Guida a Faccin OS','start-item','help')}</div>`;
+  const desktopApps = ['home','projects','training','certifications','career','sport','contact'];
+  document.getElementById('desktop-icons').innerHTML = desktopApps.map(key => `<button class="desktop-icon" type="button" data-route="${apps[key].route}"><span class="icon">${icon(apps[key].icon,40)}</span><span>${apps[key].title}</span></button>`).join('');
+  startMenu.innerHTML = `<div class="start-brand">Faccin<span>OS</span></div><div class="start-items"><div class="start-identity"><strong>Pierluca Faccin</strong><span>AI Solution Engineer</span></div>${desktopApps.map(key => routeButton(apps[key].route,apps[key].title,'start-item',apps[key].icon)).join('')}<hr>${routeButton('impostazioni','Aspetto desktop','start-item','settings')}${routeButton('help','Guida a Faccin OS','start-item','help')}</div>`;
   document.querySelectorAll('[data-icon]').forEach(element => { element.innerHTML = icon(element.dataset.icon,20); });
 
   document.addEventListener('click', async event => {

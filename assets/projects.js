@@ -164,21 +164,26 @@ window.FACCIN_PROJECTS = [
     shortTitle: "Lisbona 21K",
     category: "personal",
     field: "Sport · Pianificazione",
-    summary: "La mia passione per la corsa trasformata in un’app: piano di allenamento, diario e ricalcolo delle andature.",
+    summary: "Sport e sviluppo software si incontrano in uno strumento personale per organizzare gli allenamenti e seguire la preparazione.",
     problem: "Seguire una preparazione richiede di tenere insieme obiettivi, allenamenti svolti e ritmi da aggiornare quando la condizione cambia.",
-    solution: "Ho realizzato un’app personale per la preparazione di una mezza maratona. Riunisce un piano di allenamento e un diario delle corse, con andature che vengono ricalibrate a partire dai test.",
+    solution: "Ho realizzato un’app personale che riunisce un piano di allenamento, un diario delle corse e il ricalcolo delle andature a partire dai test. La versione attuale nasce per la preparazione di Lisbona e comprende anche indicazioni per la palestra.",
     role: "Ideazione e sviluppo dello strumento a partire da un’esigenza personale di organizzazione degli allenamenti.",
     outcomes: [
       "Piano e diario delle corse consultabili nello stesso strumento.",
       "Andature aggiornabili in base ai risultati dei test."
     ],
-    technologies: ["Applicazione web", "Calcolo delle andature", "Formule di Daniels e Gilbert"],
+    technologies: ["HTML", "CSS", "JavaScript", "Local Storage", "Calcolo delle andature"],
     details: [
       {
         title: "Dalla routine al software",
         text: "Il piano distingue fasi di base, qualità, preparazione specifica e riduzione del carico. È un esempio di come un’attività quotidiana possa diventare l’occasione per progettare uno strumento su misura."
+      },
+      {
+        title: "Un diario da consultare e aggiornare",
+        text: "Le sessioni registrate alimentano la lettura dell’andamento della preparazione. I dati restano sul dispositivo e possono essere esportati e importati; i risultati dei test aggiornano le andature attraverso le formule di Daniels e Gilbert."
       }
     ],
+    note: "Evoluzione prevista: aggiornare l’obiettivo a Copenaghen, settembre 2027, la mia prima tappa del percorso SuperHalfs, e ampliare l’integrazione degli allenamenti propedeutici in palestra. Il traguardo a lungo termine è completare le SuperHalfs. Questi sviluppi devono ancora essere applicati all’app Lisbona 21K.",
     links: [
       { label: "Apri l’app", url: "https://pierlucafaccin.github.io/LISBONA21K/" }
     ]

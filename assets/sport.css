@@ -1,0 +1,63 @@
+/* Sport: a personal chapter within the existing Faccin OS interface. */
+.sport-page { max-width: 1040px; margin: 0 auto; }
+.sport-header { padding-bottom: 27px; border-bottom: 1px solid var(--rule); }
+.sport-header .eyebrow { margin-bottom: 16px; }
+.sport-header h1 { margin: 0 0 21px; font-size: clamp(36px,4.2vw,51px); line-height: 1.08; letter-spacing: -.05em; }
+.sport-header h1 span { color: #245d55; }
+.sport-intro { max-width: 78ch; margin-bottom: 21px; color: var(--muted); font-size: 15px; line-height: 1.75; }
+.sport-disciplines { display: flex; flex-wrap: wrap; gap: 7px; }
+.sport-disciplines span { padding: 4px 9px; border: 1px solid #bbc7bc; background: #edf0e5; color: #405d4b; font: 11px/1.4 ui-monospace,Consolas,monospace; }
+.sport-stories { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 26px; margin: 30px 0 34px; }
+.sport-story { min-width: 0; padding-top: 12px; border-top: 3px solid #9eafa0; }
+.sport-story--football { border-top-color: #163f76; position: relative; }
+.sport-story--football::before { content: ''; position: absolute; left: 0; top: -3px; width: 24px; border-top: 3px solid #172524; }
+.sport-story--padel { border-top-color: #588271; }
+.sport-story--training { border-top-color: #ae8159; }
+.sport-story-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 14px; color: #657365; font: 9px/1.5 ui-monospace,Consolas,monospace; letter-spacing: .04em; }
+.sport-story-top .sport-number { font-size: 11px; color: #295e50; }
+.sport-story h2 { max-width: 22ch; margin: 0 0 12px; color: #223a30; font-size: 19px; line-height: 1.28; letter-spacing: -.025em; }
+.sport-story p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.75; }
+.sport-goal { position: relative; padding: 25px 26px 24px; background: #edf0e5; border: 1px solid #becbbb; box-shadow: 4px 4px 0 #dfe4d8; }
+.sport-goal-heading { display: flex; align-items: center; gap: 15px; margin-bottom: 18px; }
+.sport-goal-heading > div { min-width: 0; }
+.sport-goal-heading .eyebrow { margin-bottom: 7px; font-size: 10px; }
+.sport-goal-heading h2 { margin: 0; font-size: 25px; line-height: 1.23; }
+.sport-goal-icon { display: flex; flex: 0 0 auto; }
+.sport-goal-copy { max-width: 86ch; color: #435e4d; font-size: 14px; line-height: 1.75; }
+.sport-route { display: grid; grid-template-columns: minmax(0,1fr) 39px minmax(0,1fr); align-items: stretch; gap: 12px; margin: 22px 0 19px; }
+.sport-route section { min-width: 0; padding: 18px 19px; }
+.sport-first-race { background: #163f76; border: 1px solid; border-color: #7395ad #112d4b #112d4b #7395ad; color: #fffdf1; }
+.sport-long-goal { border: 1px solid #b8c6b1; background: #fbfaf3; color: #254b3d; }
+.sport-route-label { display: block; margin-bottom: 12px; font: 9px/1.5 ui-monospace,Consolas,monospace; letter-spacing: .1em; }
+.sport-first-race .sport-route-label { color: #dbe5e9; }
+.sport-route h3 { margin: 0 0 9px; font-size: 23px; line-height: 1.2; letter-spacing: -.03em; }
+.sport-route p { margin: 0; font-size: 12px; }
+.sport-route-connector { display: flex; align-items: center; justify-content: center; color: #54755f; }
+.sport-preparation { margin: 0; color: #52664f; font-size: 13px; line-height: 1.7; }
+.sport-project { margin-top: 35px; padding-top: 25px; border-top: 1px solid var(--rule); }
+.sport-project .eyebrow { margin-bottom: 11px; font-size: 10px; }
+.sport-project h2 { margin-bottom: 12px; font-size: 23px; }
+.sport-project > p:not(.eyebrow) { max-width: 88ch; color: var(--muted); font-size: 14px; line-height: 1.7; }
+.sport-project .sport-project-note { padding-left: 11px; border-left: 2px solid #b6c5ac; font-size: 12px !important; color: #5f7257 !important; }
+.sport-project .retro-button { margin-top: 1px; font-size: 12px; }
+
+@media (max-width: 760px) {
+  .sport-stories { grid-template-columns: minmax(0,1fr); gap: 23px; }
+  .sport-story h2 { max-width: none; }
+  .sport-goal { padding: 21px 19px; }
+  .sport-route { grid-template-columns: minmax(0,1fr); gap: 9px; }
+  .sport-route-connector { min-height: 27px; }
+  .sport-route-connector .pixel-icon { transform: rotate(90deg); }
+  .sport-route h3 { font-size: 24px; }
+}
+@media (max-width: 400px) {
+  .sport-header h1 { font-size: 37px; }
+  .sport-intro { font-size: 14px; }
+  .sport-goal { padding: 18px 14px; }
+  .sport-goal-heading { align-items: flex-start; gap: 10px; }
+  .sport-goal-heading .pixel-icon { width: 30px; height: 30px; }
+  .sport-goal-heading h2 { font-size: 21px; }
+  .sport-route section { padding: 16px 13px; }
+  .sport-route h3 { font-size: 23px; }
+  .sport-project h2 { font-size: 22px; }
+}
