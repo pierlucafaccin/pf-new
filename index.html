@@ -1,109 +1,321 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="it">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Pierluca Faccin · AI Solution Engineer</title>
-<meta name="description" content="Pierluca Faccin, AI Solution Engineer in Euro Informatica. IA generativa, agenti e machine learning. Sito personale in forma di terminale.">
-<meta name="theme-color" content="#020703">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
-<style>
-:root{
-  --bg:#eef2ea; --ink:#1c3a1f; --dim:#5b7a5d; --hi:#0d5a1c; --link:#0b6b2a; --sel:#cfe3cc; --glow:transparent; --scan:rgba(0,0,0,.025); --err:#9a2b16;
-  box-sizing:border-box;
-  padding-top:env(safe-area-inset-top,0px);
-  padding-bottom:env(safe-area-inset-bottom,0px);
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Pierluca Faccin · AI Solution Engineer</title>
+  <meta name="description" content="Pierluca Faccin, AI Solution Engineer in Euro Informatica. IA generativa, agenti, automazioni e machine learning. Progetti, esperienza e contatti in un terminale interattivo.">
+  <meta name="theme-color" content="#030803">
+  <link rel="canonical" href="https://pierlucafaccin.github.io/pf-new/">
+  <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iOCIgZmlsbD0iIzAzMDgwMyIvPjxwYXRoIGQ9Im0xNCAxOCAxMyAxNC0xMyAxNE0zNCA0NmgxNiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMzlmZjdhIiBzdHJva2Utd2lkdGg9IjUiIHN0cm9rZS1saW5lY2FwPSJzcXVhcmUiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiLz48L3N2Zz4K" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="it_IT">
+  <meta property="og:title" content="Pierluca Faccin · AI Solution Engineer">
+  <meta property="og:description" content="IA generativa, agenti e automazioni. Scrivi help per esplorare progetti, esperienza e contatti.">
+  <meta property="og:url" content="https://pierlucafaccin.github.io/pf-new/">
+  <meta name="twitter:card" content="summary">
+  <style>
+:root {
+  color-scheme: dark;
+  --bg: #030803;
+  --fg: #39ff7a;
+  --dim: #2fbf63;
+  --accent: #c8ff3d;
+  --warn: #ffc04d;
+  --error: #ff6b5e;
+  --glow: #39ff7a73;
+  --font: Menlo, Consolas, "DejaVu Sans Mono", "Liberation Mono", monospace;
 }
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){
-    --bg:#020703; --ink:#4fe36a; --dim:#2b8a3d; --hi:#b9ffc4; --link:#8affa0; --sel:#0f3a17; --glow:rgba(79,227,106,.45); --scan:rgba(0,0,0,.28); --err:#ff7a5c;
-  }
-}
-:root[data-theme="dark"]{
-  --bg:#020703; --ink:#4fe36a; --dim:#2b8a3d; --hi:#b9ffc4; --link:#8affa0; --sel:#0f3a17; --glow:rgba(79,227,106,.45); --scan:rgba(0,0,0,.28); --err:#ff7a5c;
-}
-:root[data-phosphor="ambra"]{ --ink:#ffb43a; --dim:#a8701c; --hi:#ffe2a8; --link:#ffd27a; --sel:#3a2608; --glow:rgba(255,180,58,.4); }
-@media (prefers-color-scheme: light){ :root[data-phosphor="ambra"]:not([data-theme="dark"]){ --ink:#5a3a06; --dim:#8a6a30; --hi:#7a4300; --link:#8a4d00; --sel:#f1dfbd; --glow:transparent; } }
 
-*,*::before,*::after{box-sizing:inherit}
-html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
-body{
-  margin:0;min-height:100%;
-  background:var(--bg);color:var(--ink);
-  font:400 15px/1.55 "IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
-  text-shadow:0 0 6px var(--glow);
-  -webkit-font-smoothing:antialiased;
+:root[data-theme="amber"] {
+  --bg: #0a0602;
+  --fg: #ffb000;
+  --dim: #c98a0a;
+  --accent: #ffe08a;
+  --warn: #ffd166;
+  --glow: #ffb00073;
 }
-body::after{ /* scanlines */
-  content:"";position:fixed;inset:0;pointer-events:none;z-index:5;
-  background:repeating-linear-gradient(to bottom,transparent 0 2px,var(--scan) 2px 3px);
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html, body { min-height: 100%; margin: 0; background: var(--bg); }
+body { color: var(--fg); font: 15px/1.5 var(--font); }
+body.terminal-ready { height: 100%; overflow: hidden; }
+::selection { background: var(--fg); color: var(--bg); text-shadow: none; }
+
+.crt {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  height: 100dvh;
+  text-shadow: 0 0 6px var(--glow);
+  transform-origin: center;
 }
-::selection{background:var(--sel);color:var(--hi)}
-a{color:var(--link);text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
-a:hover{color:var(--hi)}
-a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--hi);outline-offset:2px}
-
-.term{max-width:960px;margin:0 auto;padding:28px 20px 120px}
-.boot{color:var(--dim);margin:0 0 22px;white-space:pre-wrap}
-.boot b{color:var(--ink);font-weight:600}
-.line{margin:0;white-space:pre-wrap;word-break:break-word}
-.p{color:var(--dim)}
-.p .u{color:var(--hi)}
-.block{margin:6px 0 26px}
-
-.whoami{display:grid;grid-template-columns:auto 1fr;gap:10px 34px;align-items:start}
-.ascii{margin:0;font-size:8.6px;line-height:1.04;letter-spacing:.02em;color:var(--ink);white-space:pre;user-select:none}
-h1{font-size:clamp(26px,4.4vw,40px);line-height:1.1;margin:4px 0 6px;font-weight:600;color:var(--hi);letter-spacing:-.01em}
-.tag{color:var(--dim);margin:0 0 18px}
-.bio p{margin:0 0 12px;max-width:62ch}
-
-h2{font-size:15px;font-weight:600;color:var(--hi);margin:0 0 8px}
-.list{list-style:none;margin:0;padding:0}
-.list li{display:grid;grid-template-columns:minmax(0,22ch) 1fr;gap:0 18px;padding:3px 0}
-.list li .k{color:var(--hi)}
-.list li .v{color:var(--ink)}
-.out{white-space:pre-wrap;max-width:76ch}
-.out .k{color:var(--hi)}
-.out .d{color:var(--dim)}
-.err{color:var(--err)}
-
-.prompt{display:flex;align-items:baseline;gap:10px;margin-top:4px}
-.prompt label{color:var(--dim);white-space:nowrap}
-.prompt label .u{color:var(--hi)}
-#cmd{
-  flex:1;min-width:0;background:transparent;border:0;color:var(--hi);font:inherit;text-shadow:inherit;
-  caret-color:var(--hi);padding:0;
+.crt::before, .crt::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
 }
-#cmd:focus{outline:none}
-.chips{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 0}
-.chips button{
-  font:inherit;font-size:13px;color:var(--ink);background:transparent;border:1px solid var(--dim);
-  padding:4px 10px;border-radius:2px;cursor:pointer;text-shadow:inherit;
+.crt::before {
+  background: repeating-linear-gradient(to bottom, transparent 0 2px, rgb(0 0 0 / 22%) 2px 4px);
+  animation: scan-flicker 5s linear infinite;
 }
-.chips button:hover{border-color:var(--hi);color:var(--hi)}
-.cursor{display:inline-block;width:.6em;height:1.1em;background:var(--ink);vertical-align:-2px;animation:blink 1.1s steps(1) infinite}
-@keyframes blink{50%{opacity:0}}
+.crt::after { background: radial-gradient(ellipse at center, transparent 58%, rgb(0 0 0 / 55%) 100%); }
+@keyframes scan-flicker { 0%, 96%, 100% { opacity: 1; } 97% { opacity: .82; } }
 
-@media (max-width:760px){
-  body{font-size:14px}
-  .whoami{grid-template-columns:1fr}
-  .ascii{font-size:6.4px}
-  .list li{grid-template-columns:1fr}
-  .list li .v{padding-left:2ch;color:var(--dim)}
+.bar-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: none;
+  gap: 16px;
+  padding: calc(8px + env(safe-area-inset-top, 0px)) max(20px, env(safe-area-inset-right, 0px)) 8px max(20px, env(safe-area-inset-left, 0px));
+  border-bottom: 1px solid color-mix(in srgb, var(--fg) 30%, transparent);
+  color: var(--dim);
+  font-size: 13px;
 }
-@media (prefers-reduced-motion: reduce){ .cursor{animation:none} }
+.scroll {
+  flex: 1;
+  min-height: 0;
+  min-width: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 16px max(20px, env(safe-area-inset-right, 0px)) calc(24px + env(safe-area-inset-bottom, 0px)) max(20px, env(safe-area-inset-left, 0px));
+  scrollbar-color: var(--dim) transparent;
+}
+.line, .project, .help-row, .skill {
+  min-height: 1.5em;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.line { margin: 0; }
+.dim { color: var(--dim); }
+.heading, .accent, .prompt { color: var(--accent); }
+.heading { margin: 0; font: inherit; font-weight: 700; }
+.warn { color: var(--warn); }
+.error { color: var(--error); }
+.echo { margin-top: .75em; }
+.reveal { animation: text-reveal 120ms both; animation-delay: calc(var(--row, 0) * 14ms); }
+@keyframes text-reveal { from { opacity: 0; } to { opacity: 1; } }
+
+a, .command { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+.command { border: 0; border-radius: 0; background: none; padding: 0; cursor: pointer; font: inherit; text-shadow: inherit; }
+a:hover, .command:hover, a:focus-visible, .command:focus-visible {
+  background: var(--fg);
+  color: var(--bg);
+  text-shadow: none;
+  outline: 1px solid var(--fg);
+  outline-offset: 1px;
+}
+form { display: flex; align-items: center; gap: 1ch; margin-top: .75em; }
+label { flex: none; white-space: nowrap; }
+input {
+  flex: 1;
+  width: 0;
+  min-width: 0;
+  border: 0;
+  border-radius: 0;
+  outline: none;
+  background: none;
+  padding: 0;
+  color: var(--fg);
+  caret-color: var(--fg);
+  font: inherit;
+  text-shadow: inherit;
+}
+form:focus-within label { text-decoration: none; }
+pre { margin: 0; font: inherit; }
+.art { max-width: 100%; overflow-x: auto; white-space: pre; line-height: 1.2; }
+.about { display: flex; align-items: center; gap: 28px; max-width: 900px; margin-bottom: 12px; }
+.portrait { flex: none; max-width: 100%; overflow-x: auto; font-size: 8px; line-height: 1.16; white-space: pre; }
+.bio { min-width: 0; }
+.bio p { max-width: 62ch; margin: 12px 0 0; }
+.big { font-size: 12px; line-height: 1.05; }
+.help-row { display: grid; grid-template-columns: 10ch minmax(0, 1fr); gap: 2ch; }
+.help-list { display: flex; flex-wrap: wrap; gap: 0 2ch; align-items: baseline; }
+.project { display: grid; grid-template-columns: var(--slug-width, 22ch) minmax(0, 1fr); gap: 2ch; padding-left: 2ch; }
+.project .command { justify-self: start; text-align: left; }
+.skill { display: grid; grid-template-columns: 22ch minmax(0, 1fr); gap: 2ch; padding-left: 2ch; }
+.graph { max-width: 900px; }
+.commit { display: grid; grid-template-columns: 46px minmax(0, 1fr); gap: 1ch; }
+.commit-content { padding-bottom: 16px; }
+.rail { position: relative; color: var(--accent); }
+.rail::before { content: ""; position: absolute; left: 16px; top: .75em; bottom: -.75em; width: 2px; background: currentColor; box-shadow: 0 0 5px currentColor; }
+.commit:last-child .rail::before { display: none; }
+.rail::after { content: ""; position: absolute; left: 11px; top: calc(.75em - 6px); width: 12px; height: 12px; border: 2px solid var(--bg); border-radius: 50%; background: currentColor; box-shadow: 0 0 7px currentColor; }
+.commit:nth-child(even) .rail { color: var(--warn); }
+.table-row { display: grid; grid-template-columns: 15ch minmax(0, 1fr); gap: 2ch; min-height: 1.5em; overflow-wrap: anywhere; }
+.chips {
+  position: relative;
+  z-index: 3;
+  display: none;
+  flex: none;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 8px max(12px, env(safe-area-inset-right, 0px)) calc(8px + env(safe-area-inset-bottom, 0px)) max(12px, env(safe-area-inset-left, 0px));
+  border-top: 1px solid color-mix(in srgb, var(--fg) 30%, transparent);
+  scrollbar-width: thin;
+}
+.chips .command { flex: none; border: 1px solid var(--dim); padding: 6px 12px; text-decoration: none; }
+.matrix-overlay { position: fixed; inset: 0; z-index: 10; background: var(--bg); outline: none; }
+.matrix { position: absolute; inset: 0; display: block; width: 100%; height: 100%; pointer-events: none; }
+.matrix-hint { position: absolute; right: 16px; bottom: max(12px, env(safe-area-inset-bottom, 0px)); max-width: calc(100% - 32px); padding: 2px 8px; color: var(--dim); background: var(--bg); font: 13px/1.5 var(--font); }
+.crt-off { animation: power-down 650ms ease-in forwards; }
+@keyframes power-down { 0% { transform: scale(1); filter: brightness(1); } 60% { transform: scaleY(.006); filter: brightness(3); } 100% { transform: scale(0, .006); filter: brightness(0); } }
+.power-screen { position: fixed; inset: 0; display: grid; place-items: center; background: var(--bg); }
+.power-screen .command { max-width: 80%; text-align: center; }
+.sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; border: 0; clip-path: inset(50%); overflow: hidden; white-space: nowrap; }
+.profile { max-width: 960px; margin: auto; padding: 32px 20px; }
+.profile h1, .profile h2, .profile h3 { color: var(--accent); }
+.profile p, .profile li { overflow-wrap: anywhere; }
+.profile li { margin-bottom: 8px; }
+
+@media (pointer: coarse) {
+  .chips { display: flex; }
+  .scroll { padding-bottom: 20px; }
+}
+@media (max-width: 720px) {
+  body { font-size: 13px; }
+  input { font-size: 16px; }
+  .bar-top { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  .scroll { padding-top: 12px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-bottom: calc(20px + env(safe-area-inset-bottom, 0px)); }
+  .about { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .project { grid-template-columns: minmax(0, 1fr); gap: 0; margin-bottom: 6px; padding-left: 0; }
+  .project .dim { padding-left: 2ch; }
+  .skill { grid-template-columns: minmax(0, 1fr); gap: 0; padding-left: 0; }
+  .skill .dim { padding-left: 2ch; margin-bottom: 6px; }
+  .table-row { grid-template-columns: 10ch minmax(0, 1fr); gap: 1ch; }
+  .big { font-size: 9px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .crt::before, .reveal, .crt-off { animation: none; }
+  .crt-off { visibility: hidden; }
+}
+@media (forced-colors: active) {
+  .crt::before, .crt::after { display: none; }
+  .crt { text-shadow: none; }
+  a:focus-visible, .command:focus-visible, input:focus-visible { outline: 2px solid Highlight; }
+}
 </style>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Person","name":"Pierluca Faccin","url":"https://pierlucafaccin.github.io/pf-new/","jobTitle":"AI Solution Engineer","worksFor":{"@type":"Organization","name":"Euro Informatica SpA","url":"https://www.euroinformatica.net"},"sameAs":["https://github.com/pierlucafaccin","https://www.linkedin.com/in/pierlucafaccin"]}
+  </script>
 </head>
 <body>
-<main class="term" id="term" aria-label="Terminale di Pierluca Faccin">
-  <div class="boot" id="boot" aria-hidden="true"></div>
-
-  <div id="static">
-    <p class="line p"><span class="u">pierluca@faccin</span>:~$ whoami</p>
-    <section class="block whoami">
-      <pre class="ascii" aria-label="Ritratto in ASCII art di Pierluca">                           :;,..,,.,=,.......
+  <main id="crt" class="crt" aria-label="Terminale di Pierluca Faccin" hidden>
+    <header class="bar-top">
+      <span>FACCIN SYSTEMS v1.0</span>
+      <span id="timer" hidden></span>
+    </header>
+    <section id="scroll" class="scroll" aria-label="Sessione terminale">
+      <div id="output" role="log" aria-live="polite" aria-relevant="additions" aria-label="Output del terminale"></div>
+      <form id="form" autocomplete="off" hidden>
+        <label class="prompt" for="cmd">pierluca@faccin:~$</label>
+        <input id="cmd" name="command" type="text" maxlength="500" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="send" aria-describedby="command-hint">
+      </form>
+      <span id="command-hint" class="sr-only">Scrivi help per i comandi. Tab completa, frecce su e giù richiamano la cronologia.</span>
+    </section>
+    <nav id="chips" class="chips" aria-label="Comandi rapidi" hidden></nav>
+  </main>
+  <main id="profile" class="profile">
+<article class="static-profile" aria-labelledby="profile-name">
+  <header>
+    <h1 id="profile-name">Pierluca Faccin</h1>
+    <p>AI Solution Engineer in Euro Informatica. Valdagno (VI)</p>
+  </header>
+  <section aria-labelledby="profile-about">
+    <h2 id="profile-about">Chi sono</h2>
+    <p>Sono Pierluca e progetto soluzioni di intelligenza artificiale per le aziende: applicazioni basate su LLM, agenti e automazioni, molte delle quali per la cybersecurity. Lavoro soprattutto nell’ecosistema Microsoft, tra Azure AI, Microsoft 365 Copilot e Copilot Studio.</p>
+    <p>Ho studiato a Trento: laurea in Informatica e magistrale in Artificial Intelligence Systems. Nel 2022 il mio team ha vinto l’Industrial AI Challenge con un modello che riduce gli scarti di una linea produttiva.</p>
+    <p>Tengo anche corsi e workshop su IA generativa, prompt engineering e Copilot. Fuori dal lavoro corro: sto preparando la mezza maratona di Lisbona, con un’app di allenamento che mi sono scritto da solo.</p>
+  </section>
+  <section aria-labelledby="profile-projects">
+    <h2 id="profile-projects">Progetti</h2>
+    <ul>
+      <li><strong>SOC-AI Platform</strong>: Automazione del SOC: pipeline Python che filtrano, correlano e deduplicano gli eventi di Trend Micro Vision One e generano notifiche di sicurezza per i clienti con Azure OpenAI, Llama e Mistral.</li>
+      <li><strong>Portale servizi enterprise</strong>: Portale aziendale costruito da zero con Next.js, React, Node.js, MySQL e Python. Accesso con Microsoft Entra ID, SSO, ruoli e gestione centralizzata delle abilitazioni.</li>
+      <li><strong>Pulsar Industry</strong>: Modello di machine learning supervisionato per una linea di affettatura: meno scarti, più produttività. Vincitore dell’Industrial AI Challenge 2022 (UniTrento e Trentino Innovation Hub).</li>
+      <li><strong>CancelOut Layer</strong>: Ricerca in deep learning con la Fondazione Bruno Kessler: progettazione e implementazione dello strato nascosto CancelOut.</li>
+      <li><a href="https://pierlucafaccin.github.io/LISBONA21K/" target="_blank" rel="noopener">Lisbona 21K</a>: Piano di allenamento e diario corse verso la mezza di Lisbona. Le andature si ricalibrano da sole a ogni test.</li>
+      <li><a href="https://github.com/pierlucafaccin/NLU-Slots-Intents" target="_blank" rel="noopener">NLU Slots &amp; Intents</a>: Rete neurale multitask per classificazione dell’intento e slot filling.</li>
+      <li><a href="https://github.com/pierlucafaccin/Unsupervised-Domain-Adaptation" target="_blank" rel="noopener">Unsupervised Domain Adaptation</a>: Deep CORAL, DANN e DSN a confronto con una baseline ResNet50.</li>
+      <li><a href="https://github.com/pierlucafaccin/automated-planning-project" target="_blank" rel="noopener">Automated Planning</a>: Domini e problemi PDDL, fino all’esecuzione delle azioni in C++.</li>
+      <li><a href="https://github.com/pierlucafaccin/thinning-lesson" target="_blank" rel="noopener">Thinning</a>: Lezione su algoritmi di scheletrizzazione delle immagini, Zhang-Suen compreso.</li>
+    </ul>
+  </section>
+  <section aria-labelledby="profile-experience">
+    <h2 id="profile-experience">Esperienza</h2>
+    <section aria-labelledby="profile-euroinformatica">
+      <h3 id="profile-euroinformatica">AI Solution Engineer · Euro Informatica SpA, Sandrigo</h3>
+      <p>Aprile 2025 – oggi</p>
+      <ul>
+        <li>Soluzioni di IA, NLP e IA generativa con Python, PyTorch, Hugging Face e Azure AI.</li>
+        <li>Applicazioni basate su LLM, agenti e workflow per aziende e cybersecurity.</li>
+        <li>Microsoft 365 Copilot e Copilot Studio, Entra ID, OAuth2, SSO, RBAC.</li>
+        <li>Workshop su IA generativa, prompt engineering, Copilot e agenti.</li>
+      </ul>
+    </section>
+    <section aria-labelledby="profile-irimi">
+      <h3 id="profile-irimi">IT Consultant · IRIMÌ SRL, Schio</h3>
+      <p>Maggio 2024 – aprile 2025</p>
+      <p>Personalizzazione della piattaforma ITSM SysAid per più clienti, analisi dei requisiti, workflow su misura, supporto e formazione.</p>
+    </section>
+  </section>
+  <section aria-labelledby="profile-education">
+    <h2 id="profile-education">Formazione</h2>
+    <ul>
+      <li><strong>Laurea magistrale in Artificial Intelligence Systems</strong> · Università di Trento · 2021–2024.</li>
+      <li><strong>Laurea in Informatica</strong> · Università di Trento · 2018–2021.</li>
+    </ul>
+  </section>
+  <section aria-labelledby="profile-skills">
+    <h2 id="profile-skills">Competenze</h2>
+    <dl>
+      <dt>IA e machine learning</dt><dd>Python, PyTorch, TensorFlow, scikit-learn, NumPy, Pandas.</dd>
+      <dt>IA generativa</dt><dd>Hugging Face, LangChain, LLM, prompt engineering, agenti.</dd>
+      <dt>Cloud Microsoft</dt><dd>Azure, Azure AI Services, Azure Machine Learning.</dd>
+      <dt>Microsoft 365</dt><dd>Copilot, Copilot Studio, Power Platform.</dd>
+      <dt>Dati</dt><dd>Microsoft Fabric, Azure Data Factory, Power BI.</dd>
+      <dt>Sviluppo</dt><dd>Next.js, React, Node.js, MySQL, Java, C++, R.</dd>
+      <dt>Lingue</dt><dd>Italiano (madrelingua), inglese (B2).</dd>
+    </dl>
+  </section>
+  <section aria-labelledby="profile-certifications">
+    <h2 id="profile-certifications">Certificazioni Microsoft</h2>
+    <ul>
+      <li>Azure AI Engineer Associate · AI-102.</li>
+      <li>Azure AI Fundamentals · AI-900.</li>
+    </ul>
+  </section>
+  <section aria-labelledby="profile-running">
+    <h2 id="profile-running">Corsa</h2>
+    <p>Obiettivo: EDP Lisbon Half Marathon, 7 marzo 2027.</p>
+    <p>22 settimane in quattro fasi: base, qualità, specifica, taper.</p>
+    <p>Le andature si aggiornano dai test con le formule di Daniels e Gilbert.</p>
+    <p><a href="https://pierlucafaccin.github.io/LISBONA21K/" target="_blank" rel="noopener">Apri l’app Lisbona 21K</a>.</p>
+  </section>
+  <section aria-labelledby="profile-contact">
+    <h2 id="profile-contact">Contatti</h2>
+    <ul>
+      <li>Email: <a href="mailto:faccin.pierluca@gmail.com">faccin.pierluca@gmail.com</a>.</li>
+      <li>LinkedIn: <a href="https://www.linkedin.com/in/pierlucafaccin" target="_blank" rel="noopener">in/pierlucafaccin</a>.</li>
+      <li>GitHub: <a href="https://github.com/pierlucafaccin" target="_blank" rel="noopener">pierlucafaccin</a>.</li>
+      <li>Lavoro: <a href="https://www.euroinformatica.net" target="_blank" rel="noopener">Euro Informatica SpA</a>.</li>
+    </ul>
+  </section>
+</article>
+  </main>
+<script>
+/* Personal content retained from the original pf-new page. */
+window.PF_CONTENT = {
+  name: 'Pierluca Faccin',
+  system: 'FACCIN SYSTEMS v1.0',
+  prompt: 'pierluca@faccin:~$',
+  portrait: String.raw`                           :;,..,,.,=,.......
                       ...  .:.......  .,,:,,,,..
                      :;;   ,.              .:,..
                     ,-;;. ..  .*oooooo-.     ...
@@ -120,229 +332,1174 @@ h2{font-size:15px;font-weight:600;color:var(--hi);margin:0 0 8px}
                       .o#oooo######oo=
                      .*###oo**oooo##oo,
                      #o####ooo*=,--*-.
-                    .&amp;oo####ooo+
-                  ..+&amp;&amp;o*######o+.....;o,..
-               .,++.+@@&amp;o*o####oooooo##o......
-          ..,-++++=.+@@@&amp;#*oo######%%%##.......,..
-     ..--;:;-=++=--,+@@&amp;%&amp;@%ooo#%%%%%%#+.,,...,.,,,:,..
-,--;-;;;;:::;==-;;;.:&amp;#%&amp;&amp;&amp;&amp;&amp;*o%%%%%%%%,.,,,,,,,..,,,,,,,:...
-;;;;;;;;;;;;;---;;;.:%%&amp;&amp;&amp;@@@&amp;&amp;&amp;&amp;&amp;%%%%%.:,,,,,,,,,::::::,,,,,,,:
-;;-;;;;;;------;;;;.,%&amp;&amp;&amp;@@@@@&amp;%%%%&amp;&amp;%%.:,,,,,,,,,,::::::::,,,,,
-=-----;;;----------;,%&amp;&amp;&amp;&amp;&amp;@@&amp;%%%&amp;&amp;&amp;&amp;%#.::::,:::,:,:::;;:::::::,
-=------;;;===------;.%&amp;&amp;&amp;@&amp;@&amp;%&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;,::::::::::::;;:;;;;;::::,
-====-==-;;-====----;.%&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;@&amp;&amp;&amp;&amp;&amp;&amp;.;::::::::;:;;;;;;;;::::;,
-========---=====---;.%&amp;&amp;&amp;&amp;&amp;&amp;&amp;@@@&amp;&amp;&amp;&amp;&amp;+.;::;;;::;:;;;;::::;::,::.
--================-=-.%%&amp;&amp;&amp;&amp;&amp;&amp;@@@&amp;&amp;&amp;&amp;&amp;.;;:;;;;;;:;-;;;::::::,,:,.
-:=++===+=========---.#%&amp;&amp;&amp;&amp;&amp;&amp;@@&amp;&amp;@&amp;&amp;#.;;;;;---;;--;;;:::::,,:,..
-,-++==++++++=====---.-%&amp;&amp;&amp;@&amp;@@@&amp;@@&amp;&amp;.-;;;;;;-;;--;;;;::::,,,;,..
-.;====+++++==+===--=;.%&amp;&amp;&amp;&amp;&amp;@@@@@&amp;&amp;%.-;;-----:;;;:::::::,,.,:,..
-.,-====++++++++===---.%&amp;&amp;&amp;@&amp;&amp;@@@&amp;&amp;&amp;,;;------:;;;:::::::,,..:,,..
-,.---===++++++=====--.o%&amp;&amp;@&amp;@@@&amp;&amp;&amp;#.;;;----;--;;::::,,,,...:,,..
-,.:--=====++++=======:,%&amp;&amp;@@@@@&amp;&amp;&amp;.--;;-=-;--;;::::,,,.....,,,,.
-...--==+=++++++++++==-.%%&amp;@@@@@&amp;&amp;%.=;;---:-;;;;::,,,,......,,,,.
-...:-====++======++===.-%&amp;@@@@@&amp;&amp;,=-;--;;;;;;:::,,,,........,,,.
-....;--=========--==+=;.#%&amp;&amp;@@@&amp;o.=---;;;;;:::,,,,,.........,,,,
-....;--==-=====--;;+++=.=%&amp;&amp;@@@&amp;.=---;;-;::,,,,,,,.............,
-....:;----===-==--;-++=;.%&amp;&amp;&amp;@&amp;-,-;;::::,,,,,,,,................</pre>
-      <div>
-        <h1>Pierluca Faccin</h1>
-        <p class="tag">AI Solution Engineer in Euro Informatica. Valdagno (VI)</p>
-        <div class="bio">
-          <p>Sono Pierluca e progetto soluzioni di intelligenza artificiale per le aziende: applicazioni basate su LLM, agenti e automazioni, molte delle quali per la cybersecurity. Lavoro soprattutto nell’ecosistema Microsoft, tra Azure AI, Microsoft 365 Copilot e Copilot Studio.</p>
-          <p>Ho studiato a Trento: laurea in Informatica e magistrale in Artificial Intelligence Systems. Nel 2022 il mio team ha vinto l’Industrial AI Challenge con un modello che riduce gli scarti di una linea produttiva.</p>
-          <p>Tengo anche corsi e workshop su IA generativa, prompt engineering e Copilot. Fuori dal lavoro corro: sto preparando la mezza maratona di Lisbona, con un’app di allenamento che mi sono scritto da solo.</p>
-        </div>
-      </div>
-    </section>
-
-    <p class="line p"><span class="u">pierluca@faccin</span>:~$ ls progetti/</p>
-    <section class="block" aria-labelledby="h-prog">
-      <h2 id="h-prog" class="sr">Progetti</h2>
-      <ul class="list" id="proj-list"></ul>
-    </section>
-
-    <p class="line p"><span class="u">pierluca@faccin</span>:~$ cat contatti</p>
-    <section class="block" aria-labelledby="h-cont">
-      <h2 id="h-cont" class="sr">Contatti</h2>
-      <ul class="list" id="cont-list"></ul>
-    </section>
-  </div>
-
-  <div id="history" aria-live="polite"></div>
-
-  <form class="prompt" id="form" autocomplete="off">
-    <label for="cmd"><span class="u">pierluca@faccin</span>:~$</label>
-    <input id="cmd" name="cmd" type="text" spellcheck="false" autocapitalize="off" aria-describedby="hint" enterkeyhint="go">
-  </form>
-  <p class="line p" id="hint">Scrivi <a href="#" data-cmd="help">help</a> per iniziare, oppure tocca un comando.</p>
-  <div class="chips" id="chips"></div>
-</main>
-
-<script>
-(function(){
-  const $ = s => document.querySelector(s);
-  const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c]));
-  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  /* ---------- contenuti ---------- */
-  const PROGETTI = [
-    {n:"soc-ai", t:"SOC-AI Platform", d:"Automazione del SOC: pipeline Python che filtrano, correlano e deduplicano gli eventi di Trend Micro Vision One e generano notifiche di sicurezza per i clienti con Azure OpenAI, Llama e Mistral."},
-    {n:"portale-servizi", t:"Portale servizi enterprise", d:"Portale aziendale costruito da zero con Next.js, React, Node.js, MySQL e Python. Accesso con Microsoft Entra ID, SSO, ruoli e gestione centralizzata delle abilitazioni."},
-    {n:"pulsar-industry", t:"Pulsar Industry", d:"Modello di machine learning supervisionato per una linea di affettatura: meno scarti, più produttività. Vincitore dell’Industrial AI Challenge 2022 (UniTrento e Trentino Innovation Hub)."},
-    {n:"cancelout", t:"CancelOut Layer", d:"Ricerca in deep learning con la Fondazione Bruno Kessler: progettazione e implementazione dello strato nascosto CancelOut."},
-    {n:"lisbona-21k", t:"Lisbona 21K", d:"Piano di allenamento e diario corse verso la mezza di Lisbona. Le andature si ricalibrano da sole a ogni test.", u:"https://pierlucafaccin.github.io/LISBONA21K/"},
-    {n:"nlu-slots-intents", t:"NLU Slots & Intents", d:"Rete neurale multitask per classificazione dell’intento e slot filling.", u:"https://github.com/pierlucafaccin/NLU-Slots-Intents"},
-    {n:"domain-adaptation", t:"Unsupervised Domain Adaptation", d:"Deep CORAL, DANN e DSN a confronto con una baseline ResNet50.", u:"https://github.com/pierlucafaccin/Unsupervised-Domain-Adaptation"},
-    {n:"automated-planning", t:"Automated Planning", d:"Domini e problemi PDDL, fino all’esecuzione delle azioni in C++.", u:"https://github.com/pierlucafaccin/automated-planning-project"},
-    {n:"thinning", t:"Thinning", d:"Lezione su algoritmi di scheletrizzazione delle immagini, Zhang-Suen compreso.", u:"https://github.com/pierlucafaccin/thinning-lesson"}
-  ];
-  const CONTATTI = [
-    {k:"email", v:"faccin.pierluca@gmail.com", u:"mailto:faccin.pierluca@gmail.com"},
-    {k:"linkedin", v:"in/pierlucafaccin", u:"https://www.linkedin.com/in/pierlucafaccin"},
-    {k:"github", v:"pierlucafaccin", u:"https://github.com/pierlucafaccin"},
-    {k:"lavoro", v:"Euro Informatica SpA", u:"https://www.euroinformatica.net"}
-  ];
-  const link = (u, txt) => u ? `<a href="${esc(u)}" ${u.startsWith("mailto:") ? "" : 'target="_blank" rel="noopener"'}>${esc(txt)}</a>` : `<span class="k">${esc(txt)}</span>`;
-
-  $("#proj-list").innerHTML = PROGETTI.map(p => `<li><span class="k">${link(p.u, p.t)}</span><span class="v">${esc(p.d)}</span></li>`).join("");
-  $("#cont-list").innerHTML = CONTATTI.map(c => `<li><span class="k">${esc(c.k)}</span><span class="v">${link(c.u, c.v)}</span></li>`).join("");
-
-  const COMANDI = {
-    help: {d:"questo elenco", f:() =>
-      `<span class="k">Comandi disponibili</span>\n` +
-      Object.entries(COMANDI).filter(([,c]) => !c.hidden).map(([k,c]) => `  ${k.padEnd(16)}<span class="d">${c.d}</span>`).join("\n")},
-    chi: {d:"due righe su di me", f:() => [...document.querySelectorAll(".bio p")].map(p => esc(p.textContent)).join("\n\n")},
-    esperienza: {d:"dove ho lavorato", f:() =>
-`<span class="k">AI Solution Engineer</span>  Euro Informatica SpA, Sandrigo
-<span class="d">apr 2025, oggi</span>
-  Soluzioni di IA, NLP e IA generativa con Python, PyTorch, Hugging Face e Azure AI.
-  Applicazioni basate su LLM, agenti e workflow per aziende e cybersecurity.
-  Microsoft 365 Copilot e Copilot Studio, Entra ID, OAuth2, SSO, RBAC.
-  Workshop su IA generativa, prompt engineering, Copilot e agenti.
-
-<span class="k">IT Consultant</span>  IRIMÌ SRL, Schio
-<span class="d">mag 2024, apr 2025</span>
-  Personalizzazione della piattaforma ITSM SysAid per più clienti,
-  analisi dei requisiti, workflow su misura, supporto e formazione.`},
-    progetti: {d:"cosa ho costruito", f:() => PROGETTI.map(p => `<span class="k">${link(p.u, p.t)}</span>\n  ${esc(p.d)}`).join("\n\n")},
-    formazione: {d:"studi", f:() =>
-`<span class="k">Laurea magistrale in Artificial Intelligence Systems</span>
-  Università di Trento <span class="d">2021, 2024</span>
-<span class="k">Laurea in Informatica</span>
-  Università di Trento <span class="d">2018, 2021</span>`},
-    competenze: {d:"strumenti e tecnologie", f:() =>
-`<span class="k">IA e machine learning</span>  Python, PyTorch, TensorFlow, scikit-learn, NumPy, Pandas
-<span class="k">IA generativa</span>          Hugging Face, LangChain, LLM, prompt engineering, agenti
-<span class="k">Cloud Microsoft</span>       Azure, Azure AI Services, Azure Machine Learning
-<span class="k">Microsoft 365</span>         Copilot, Copilot Studio, Power Platform
-<span class="k">Dati</span>                  Microsoft Fabric, Azure Data Factory, Power BI
-<span class="k">Sviluppo</span>              Next.js, React, Node.js, MySQL, Java, C++, R
-<span class="k">Lingue</span>                italiano (madrelingua), inglese (B2)`},
-    certificazioni: {d:"certificazioni Microsoft", f:() =>
-`<span class="k">Azure AI Engineer Associate</span>  AI-102
-<span class="k">Azure AI Fundamentals</span>        AI-900`},
-    contatti: {d:"come trovarmi", f:() => CONTATTI.map(c => `${c.k.padEnd(10)}${link(c.u, c.v)}`).join("\n")},
-    corsa: {d:"il mio altro progetto", f:() =>
-`Obiettivo: <span class="k">EDP Lisbon Half Marathon</span>, 7 marzo 2027.
-22 settimane in quattro fasi: base, qualità, specifica, taper.
-Le andature si aggiornano dai test con le formule di Daniels e Gilbert.
-${link("https://pierlucafaccin.github.io/LISBONA21K/", "Apri l’app")}`},
-    tema: {d:"verde o ambra", f:(a) => {
-      const v = (a[0]||"").toLowerCase();
-      if (v === "ambra") { document.documentElement.dataset.phosphor = "ambra"; save("ambra"); return "Fosfori ambra attivati."; }
-      if (v === "verde") { delete document.documentElement.dataset.phosphor; save("verde"); return "Fosfori verdi attivati."; }
-      return `Uso: tema verde | tema ambra`;
-    }},
-    clear: {d:"pulisce lo schermo", f:() => { $("#static").hidden = true; $("#boot").hidden = true; $("#history").innerHTML = ""; return null; }},
-    whoami: {hidden:true, f:() => "pierluca"},
-    ls: {hidden:true, f:() => "progetti/  contatti  cv.pdf  .segreti"},
-    pwd: {hidden:true, f:() => "/home/pierluca"},
-    date: {hidden:true, f:() => new Date().toLocaleString("it-IT", {dateStyle:"full", timeStyle:"short"})},
-    cat: {hidden:true, f:(a) => {
-      const t = (a[0]||"").replace(/\/$/,"");
-      if (t === "contatti") return COMANDI.contatti.f();
-      if (t === "cv.pdf") return `<span class="d">File binario. Prova</span> esperienza<span class="d">,</span> formazione <span class="d">o</span> competenze<span class="d">.</span>`;
-      if (t === ".segreti") return "Il tempo sulla mezza è ancora 1:50:46. Per poco.";
-      if (t === "progetti") return "cat: progetti: è una cartella. Prova ls progetti/";
-      return `cat: ${esc(t||"")}: file non trovato`;
-    }},
-    echo: {hidden:true, f:(a) => esc(a.join(" "))},
-    sudo: {hidden:true, f:() => `<span class="err">pierluca non è nel file sudoers. L’incidente verrà segnalato al SOC.</span>`},
-    exit: {hidden:true, f:() => "Non si esce. Ma puoi scrivermi: contatti"}
-  };
-
-  function save(v){ try{ localStorage.setItem("phosphor", v); }catch(e){} }
-  try{ if (localStorage.getItem("phosphor") === "ambra") document.documentElement.dataset.phosphor = "ambra"; }catch(e){}
-
-  /* ---------- prompt ---------- */
-  const hist = $("#history"), input = $("#cmd");
-  const past = []; let pi = 0;
-
-  function run(raw){
-    const line = raw.trim();
-    const echoLine = document.createElement("p");
-    echoLine.className = "line p";
-    echoLine.innerHTML = `<span class="u">pierluca@faccin</span>:~$ ${esc(line)}`;
-    hist.appendChild(echoLine);
-    if (!line) return;
-    past.push(line); pi = past.length;
-    const [name, ...args] = line.split(/\s+/);
-    const c = COMANDI[name.toLowerCase()];
-    let out;
-    if (c) out = c.f(args);
-    else out = `<span class="err">${esc(name)}: comando non trovato.</span> Scrivi help per l’elenco dei comandi.`;
-    if (out === null) return;
-    const div = document.createElement("div");
-    div.className = "block out";
-    div.innerHTML = out;
-    hist.appendChild(div);
-    input.scrollIntoView({block:"nearest"});
-  }
-
-  $("#form").addEventListener("submit", e => { e.preventDefault(); run(input.value); input.value = ""; });
-  input.addEventListener("keydown", e => {
-    if (e.key === "ArrowUp" && past.length){ pi = Math.max(0, pi-1); input.value = past[pi]; e.preventDefault(); }
-    else if (e.key === "ArrowDown" && past.length){ pi = Math.min(past.length, pi+1); input.value = past[pi] || ""; e.preventDefault(); }
-    else if (e.key === "Tab"){
-      const v = input.value.toLowerCase();
-      const m = Object.keys(COMANDI).filter(k => !COMANDI[k].hidden && k.startsWith(v));
-      if (v && m.length === 1){ input.value = m[0]; e.preventDefault(); }
+                    .&oo####ooo+
+                  ..+&&o*######o+.....;o,..
+               .,++.+@@&o*o####oooooo##o......
+          ..,-++++=.+@@@&#*oo######%%%##.......,..
+     ..--;:;-=++=--,+@@&%&@%ooo#%%%%%%#+.,,...,.,,,:,..
+,--;-;;;;:::;==-;;;.:&#%&&&&&*o%%%%%%%%,.,,,,,,,..,,,,,,,:...
+;;;;;;;;;;;;;---;;;.:%%&&&@@@&&&&&%%%%%.:,,,,,,,,,::::::,,,,,,,:
+;;-;;;;;;------;;;;.,%&&&@@@@@&%%%%&&%%.:,,,,,,,,,,::::::::,,,,,
+=-----;;;----------;,%&&&&&@@&%%%&&&&%#.::::,:::,:,:::;;:::::::,
+=------;;;===------;.%&&&@&@&%&&&&&&&&,::::::::::::;;:;;;;;::::,
+====-==-;;-====----;.%&&&&&&&&&@&&&&&&.;::::::::;:;;;;;;;;::::;,
+========---=====---;.%&&&&&&&@@@&&&&&+.;::;;;::;:;;;;::::;::,::.
+-================-=-.%%&&&&&&@@@&&&&&.;;:;;;;;;:;-;;;::::::,,:,.
+:=++===+=========---.#%&&&&&&@@&&@&&#.;;;;;---;;--;;;:::::,,:,..
+,-++==++++++=====---.-%&&&@&@@@&@@&&.-;;;;;;-;;--;;;;::::,,,;,..
+.;====+++++==+===--=;.%&&&&&@@@@@&&%.-;;-----:;;;:::::::,,.,:,..
+.,-====++++++++===---.%&&&@&&@@@&&&,;;------:;;;:::::::,,..:,,..
+,.---===++++++=====--.o%&&@&@@@&&&#.;;;----;--;;::::,,,,...:,,..
+,.:--=====++++=======:,%&&@@@@@&&&.--;;-=-;--;;::::,,,.....,,,,.
+...--==+=++++++++++==-.%%&@@@@@&&%.=;;---:-;;;;::,,,,......,,,,.
+...:-====++======++===.-%&@@@@@&&,=-;--;;;;;;:::,,,,........,,,.
+....;--=========--==+=;.#%&&@@@&o.=---;;;;;:::,,,,,.........,,,,
+....;--==-=====--;;+++=.=%&&@@@&.=---;;-;::,,,,,,,.............,
+....:;----===-==--;-++=;.%&&&@&-,-;;::::,,,,,,,,................`,
+  role: {
+    it: 'AI Solution Engineer in Euro Informatica',
+    en: 'AI Solution Engineer at Euro Informatica'
+  },
+  location: { it: 'Valdagno (VI)', en: 'Valdagno (VI)' },
+  bio: {
+    it: [
+      'Sono Pierluca e progetto soluzioni di intelligenza artificiale per le aziende: applicazioni basate su LLM, agenti e automazioni, molte delle quali per la cybersecurity. Lavoro soprattutto nell’ecosistema Microsoft, tra Azure AI, Microsoft 365 Copilot e Copilot Studio.',
+      'Ho studiato a Trento: laurea in Informatica e magistrale in Artificial Intelligence Systems. Nel 2022 il mio team ha vinto l’Industrial AI Challenge con un modello che riduce gli scarti di una linea produttiva.',
+      'Tengo anche corsi e workshop su IA generativa, prompt engineering e Copilot. Fuori dal lavoro corro: sto preparando la mezza maratona di Lisbona, con un’app di allenamento che mi sono scritto da solo.'
+    ],
+    en: [
+      'I’m Pierluca, and I design artificial intelligence solutions for businesses: LLM applications, agents and automation, often for cybersecurity. I mainly work in the Microsoft ecosystem, with Azure AI, Microsoft 365 Copilot and Copilot Studio.',
+      'I studied in Trento, earning a bachelor’s degree in Computer Science and a master’s degree in Artificial Intelligence Systems. In 2022, my team won the Industrial AI Challenge with a model that reduces waste on a production line.',
+      'I also teach courses and workshops on generative AI, prompt engineering and Copilot. Outside work, I run: I’m preparing for the Lisbon Half Marathon with a training app I built myself.'
+    ]
+  },
+  projects: [
+    {
+      slug: 'soc-ai',
+      title: 'SOC-AI Platform',
+      description: {
+        it: 'Automazione del SOC: pipeline Python che filtrano, correlano e deduplicano gli eventi di Trend Micro Vision One e generano notifiche di sicurezza per i clienti con Azure OpenAI, Llama e Mistral.',
+        en: 'SOC automation: Python pipelines that filter, correlate and deduplicate Trend Micro Vision One events, generating customer security notifications with Azure OpenAI, Llama and Mistral.'
+      },
+      group: 'work'
+    },
+    {
+      slug: 'portale-servizi',
+      title: 'Portale servizi enterprise',
+      description: {
+        it: 'Portale aziendale costruito da zero con Next.js, React, Node.js, MySQL e Python. Accesso con Microsoft Entra ID, SSO, ruoli e gestione centralizzata delle abilitazioni.',
+        en: 'Enterprise portal built from scratch with Next.js, React, Node.js, MySQL and Python. Microsoft Entra ID sign-in, SSO, roles and centralised access management.'
+      },
+      group: 'work'
+    },
+    {
+      slug: 'pulsar-industry',
+      title: 'Pulsar Industry',
+      description: {
+        it: 'Modello di machine learning supervisionato per una linea di affettatura: meno scarti, più produttività. Vincitore dell’Industrial AI Challenge 2022 (UniTrento e Trentino Innovation Hub).',
+        en: 'Supervised machine learning model for a slicing line: less waste, greater productivity. Winner of the Industrial AI Challenge 2022 (UniTrento and Trentino Innovation Hub).'
+      },
+      group: 'research'
+    },
+    {
+      slug: 'cancelout',
+      title: 'CancelOut Layer',
+      description: {
+        it: 'Ricerca in deep learning con la Fondazione Bruno Kessler: progettazione e implementazione dello strato nascosto CancelOut.',
+        en: 'Deep learning research with Fondazione Bruno Kessler: design and implementation of the CancelOut hidden layer.'
+      },
+      group: 'research'
+    },
+    {
+      slug: 'lisbona-21k',
+      title: 'Lisbona 21K',
+      description: {
+        it: 'Piano di allenamento e diario corse verso la mezza di Lisbona. Le andature si ricalibrano da sole a ogni test.',
+        en: 'Training plan and running diary for the Lisbon Half Marathon. Training paces recalibrate automatically after each test.'
+      },
+      url: 'https://pierlucafaccin.github.io/LISBONA21K/',
+      group: 'personal'
+    },
+    {
+      slug: 'nlu-slots-intents',
+      title: 'NLU Slots & Intents',
+      description: {
+        it: 'Rete neurale multitask per classificazione dell’intento e slot filling.',
+        en: 'Multitask neural network for intent classification and slot filling.'
+      },
+      url: 'https://github.com/pierlucafaccin/NLU-Slots-Intents',
+      group: 'research'
+    },
+    {
+      slug: 'domain-adaptation',
+      title: 'Unsupervised Domain Adaptation',
+      description: {
+        it: 'Deep CORAL, DANN e DSN a confronto con una baseline ResNet50.',
+        en: 'Deep CORAL, DANN and DSN compared with a ResNet50 baseline.'
+      },
+      url: 'https://github.com/pierlucafaccin/Unsupervised-Domain-Adaptation',
+      group: 'research'
+    },
+    {
+      slug: 'automated-planning',
+      title: 'Automated Planning',
+      description: {
+        it: 'Domini e problemi PDDL, fino all’esecuzione delle azioni in C++.',
+        en: 'PDDL domains and problems, through to executing actions in C++.'
+      },
+      url: 'https://github.com/pierlucafaccin/automated-planning-project',
+      group: 'research'
+    },
+    {
+      slug: 'thinning',
+      title: 'Thinning',
+      description: {
+        it: 'Lezione su algoritmi di scheletrizzazione delle immagini, Zhang-Suen compreso.',
+        en: 'Lesson on image skeletonisation algorithms, including Zhang-Suen.'
+      },
+      url: 'https://github.com/pierlucafaccin/thinning-lesson',
+      group: 'research'
     }
-    else if (e.key === "l" && e.ctrlKey){ e.preventDefault(); run("clear"); }
-  });
-
-  const CHIPS = ["help","esperienza","progetti","competenze","certificazioni","corsa","contatti"];
-  $("#chips").innerHTML = CHIPS.map(c => `<button type="button" data-cmd="${c}">${c}</button>`).join("");
-  document.addEventListener("click", e => {
-    const t = e.target.closest("[data-cmd]");
-    if (!t) return;
-    e.preventDefault(); run(t.dataset.cmd);
-  });
-  document.addEventListener("keydown", e => {
-    if (e.key.length === 1 && !e.ctrlKey && !e.metaKey && !e.altKey && document.activeElement !== input && !["INPUT","TEXTAREA","BUTTON","A"].includes(document.activeElement.tagName)) input.focus();
-  });
-
-  /* ---------- boot ---------- */
-  const BOOT = [
-    "<b>FACCIN SYSTEMS v1.0</b>",
-    "Inizializzazione memoria ............ ok",
-    "Caricamento modelli (LLM, PyTorch) .. ok",
-    "Connessione a Valdagno (VI) ......... ok",
-    ""
-  ];
-  const boot = $("#boot"), stat = $("#static");
-  if (reduce){ boot.innerHTML = BOOT.join("\n"); }
-  else {
-    stat.style.visibility = "hidden";
-    let i = 0;
-    (function next(){
-      if (i < BOOT.length){ boot.innerHTML += (i ? "\n" : "") + BOOT[i++]; setTimeout(next, i === 1 ? 260 : 170); }
-      else { stat.style.visibility = ""; }
-    })();
+  ],
+  contacts: [
+    {
+      key: 'email',
+      label: { it: 'Email', en: 'Email' },
+      value: 'faccin.pierluca@gmail.com',
+      url: 'mailto:faccin.pierluca@gmail.com'
+    },
+    {
+      key: 'linkedin',
+      label: { it: 'LinkedIn', en: 'LinkedIn' },
+      value: 'in/pierlucafaccin',
+      url: 'https://www.linkedin.com/in/pierlucafaccin'
+    },
+    {
+      key: 'github',
+      label: { it: 'GitHub', en: 'GitHub' },
+      value: 'pierlucafaccin',
+      url: 'https://github.com/pierlucafaccin'
+    },
+    {
+      key: 'lavoro',
+      label: { it: 'Lavoro', en: 'Work' },
+      value: 'Euro Informatica SpA',
+      url: 'https://www.euroinformatica.net'
+    }
+  ],
+  experience: [
+    {
+      role: 'AI Solution Engineer',
+      company: 'Euro Informatica SpA',
+      location: 'Sandrigo',
+      dates: { it: 'apr 2025 – oggi', en: 'Apr 2025 – present' },
+      description: {
+        it: [
+          'Soluzioni di IA, NLP e IA generativa con Python, PyTorch, Hugging Face e Azure AI.',
+          'Applicazioni basate su LLM, agenti e workflow per aziende e cybersecurity.',
+          'Microsoft 365 Copilot e Copilot Studio, Entra ID, OAuth2, SSO, RBAC.',
+          'Workshop su IA generativa, prompt engineering, Copilot e agenti.'
+        ],
+        en: [
+          'AI, NLP and generative AI solutions with Python, PyTorch, Hugging Face and Azure AI.',
+          'LLM applications, agents and workflows for businesses and cybersecurity.',
+          'Microsoft 365 Copilot and Copilot Studio, Entra ID, OAuth2, SSO, RBAC.',
+          'Workshops on generative AI, prompt engineering, Copilot and agents.'
+        ]
+      }
+    },
+    {
+      role: 'IT Consultant',
+      company: 'IRIMÌ SRL',
+      location: 'Schio',
+      dates: { it: 'mag 2024 – apr 2025', en: 'May 2024 – Apr 2025' },
+      description: {
+        it: [
+          'Personalizzazione della piattaforma ITSM SysAid per più clienti,',
+          'analisi dei requisiti, workflow su misura, supporto e formazione.'
+        ],
+        en: [
+          'Customisation of the SysAid ITSM platform for multiple clients,',
+          'requirements analysis, tailored workflows, support and training.'
+        ]
+      }
+    }
+  ],
+  education: [
+    {
+      title: {
+        it: 'Laurea magistrale in Artificial Intelligence Systems',
+        en: 'Master’s degree in Artificial Intelligence Systems'
+      },
+      school: 'Università di Trento',
+      dates: '2021–2024'
+    },
+    {
+      title: { it: 'Laurea in Informatica', en: 'Bachelor’s degree in Computer Science' },
+      school: 'Università di Trento',
+      dates: '2018–2021'
+    }
+  ],
+  certifications: [
+    { title: 'Azure AI Engineer Associate', code: 'AI-102' },
+    { title: 'Azure AI Fundamentals', code: 'AI-900' }
+  ],
+  skills: [
+    {
+      title: { it: 'IA e machine learning', en: 'AI and machine learning' },
+      items: [
+        { name: 'Python', note: { it: '', en: '' } },
+        { name: 'PyTorch', note: { it: '', en: '' } },
+        { name: 'TensorFlow', note: { it: '', en: '' } },
+        { name: 'scikit-learn', note: { it: '', en: '' } },
+        { name: 'NumPy', note: { it: '', en: '' } },
+        { name: 'Pandas', note: { it: '', en: '' } }
+      ]
+    },
+    {
+      title: { it: 'IA generativa', en: 'Generative AI' },
+      items: [
+        { name: 'Hugging Face', note: { it: '', en: '' } },
+        { name: 'LangChain', note: { it: '', en: '' } },
+        { name: 'LLM', note: { it: '', en: '' } },
+        { name: 'prompt engineering', note: { it: '', en: '' } },
+        { name: 'agenti', note: { it: '', en: '' } }
+      ]
+    },
+    {
+      title: { it: 'Cloud Microsoft', en: 'Microsoft cloud' },
+      items: [
+        { name: 'Azure', note: { it: '', en: '' } },
+        { name: 'Azure AI Services', note: { it: '', en: '' } },
+        { name: 'Azure Machine Learning', note: { it: '', en: '' } }
+      ]
+    },
+    {
+      title: { it: 'Microsoft 365', en: 'Microsoft 365' },
+      items: [
+        { name: 'Copilot', note: { it: '', en: '' } },
+        { name: 'Copilot Studio', note: { it: '', en: '' } },
+        { name: 'Power Platform', note: { it: '', en: '' } }
+      ]
+    },
+    {
+      title: { it: 'Dati', en: 'Data' },
+      items: [
+        { name: 'Microsoft Fabric', note: { it: '', en: '' } },
+        { name: 'Azure Data Factory', note: { it: '', en: '' } },
+        { name: 'Power BI', note: { it: '', en: '' } }
+      ]
+    },
+    {
+      title: { it: 'Sviluppo', en: 'Development' },
+      items: [
+        { name: 'Next.js', note: { it: '', en: '' } },
+        { name: 'React', note: { it: '', en: '' } },
+        { name: 'Node.js', note: { it: '', en: '' } },
+        { name: 'MySQL', note: { it: '', en: '' } },
+        { name: 'Java', note: { it: '', en: '' } },
+        { name: 'C++', note: { it: '', en: '' } },
+        { name: 'R', note: { it: '', en: '' } }
+      ]
+    },
+    {
+      title: { it: 'Lingue', en: 'Languages' },
+      items: [
+        { name: 'Italiano', note: { it: 'madrelingua', en: 'native' } },
+        { name: 'Inglese', note: { it: 'B2', en: 'B2' } }
+      ]
+    }
+  ],
+  running: {
+    it: [
+      'Obiettivo: EDP Lisbon Half Marathon, 7 marzo 2027.',
+      '22 settimane in quattro fasi: base, qualità, specifica, taper.',
+      'Le andature si aggiornano dai test con le formule di Daniels e Gilbert.'
+    ],
+    en: [
+      'Goal: EDP Lisbon Half Marathon, 7 March 2027.',
+      '22 weeks across four phases: base, quality, race-specific training and taper.',
+      'Training paces update from test results using the Daniels and Gilbert formulas.'
+    ]
+  },
+  secrets: {
+    it: 'Il tempo sulla mezza è ancora 1:50:46. Per poco.',
+    en: 'My half-marathon time is still 1:50:46. For now.'
   }
-  if (window.matchMedia("(pointer:fine)").matches) setTimeout(() => input.focus({preventScroll:true}), 900);
-})();
+};
+
 </script>
-<style>.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}</style>
+<script>
+/* Optional terminal interactions. All commands run entirely in the browser. */
+(function () {
+  'use strict';
+
+  window.PFExtras = function (api) {
+    var game = null;
+    var timerInterval = null;
+    var timerDeadline = 0;
+    var closeMatrix = null;
+    var jokeDeck = [];
+
+    function pause(milliseconds) {
+      return new Promise(function (resolve) {
+        window.setTimeout(resolve, api.reduced() ? 0 : milliseconds);
+      });
+    }
+
+    function randomInteger(minimum, maximum) {
+      return minimum + Math.floor(Math.random() * (maximum - minimum + 1));
+    }
+
+    function description(it, en) {
+      return { it: it, en: en };
+    }
+
+    function remainingSeconds() {
+      return Math.max(0, Math.ceil((timerDeadline - Date.now()) / 1000));
+    }
+
+    function clockText(seconds) {
+      var minutes = Math.floor(seconds / 60);
+      return String(minutes).padStart(2, '0') + ':' + String(seconds % 60).padStart(2, '0');
+    }
+
+    function clearTimerInterval() {
+      if (timerInterval !== null) {
+        window.clearInterval(timerInterval);
+        timerInterval = null;
+      }
+    }
+
+    function stopTimer() {
+      clearTimerInterval();
+      timerDeadline = 0;
+      api.timer.hidden = true;
+      api.timer.textContent = '';
+    }
+
+    function updateTimer() {
+      if (!timerDeadline) return;
+      var seconds = remainingSeconds();
+      if (seconds === 0) {
+        stopTimer();
+        api.write(api.t('Timer terminato. È il momento di una pausa.', 'Timer finished. Time for a break.'), 'accent');
+        api.scroll();
+        return;
+      }
+      api.timer.hidden = false;
+      api.timer.textContent = 'timer ' + clockText(seconds);
+      api.timer.setAttribute('aria-label', api.t('Tempo rimanente: ', 'Time remaining: ') + clockText(seconds));
+    }
+
+    api.timer.setAttribute('role', 'timer');
+    api.timer.setAttribute('aria-live', 'off');
+
+    api.register('timer', {
+      description: description('Timer di concentrazione: timer [1–180], stop, status', 'Focus timer: timer [1–180], stop, status'),
+      run: function (args) {
+        var value = (args[0] || '').toLowerCase();
+        if (args.length > 1) {
+          api.write(api.t('Uso: timer [1–180] | timer stop | timer status', 'Usage: timer [1–180] | timer stop | timer status'), 'dim');
+          return;
+        }
+        if (value === 'stop') {
+          var running = timerDeadline > 0;
+          stopTimer();
+          api.write(running ? api.t('Timer interrotto.', 'Timer stopped.') : api.t('Nessun timer attivo.', 'No timer is running.'), 'dim');
+          return;
+        }
+        if (value === 'status') {
+          updateTimer();
+          api.write(timerDeadline ? api.t('Tempo rimanente: ', 'Time remaining: ') + clockText(remainingSeconds()) : api.t('Nessun timer attivo.', 'No timer is running.'), 'dim');
+          return;
+        }
+        var minutes = value === '' ? 25 : Number(value);
+        if ((value !== '' && !/^\d+$/.test(value)) || !Number.isInteger(minutes) || minutes < 1 || minutes > 180) {
+          api.write(api.t('Scegli un numero intero di minuti da 1 a 180.', 'Choose a whole number of minutes from 1 to 180.'), 'warn');
+          return;
+        }
+        clearTimerInterval();
+        timerDeadline = Date.now() + minutes * 60000;
+        updateTimer();
+        timerInterval = window.setInterval(updateTimer, 1000);
+        api.write(api.t('Timer avviato: ', 'Timer started: ') + minutes + api.t(' min. Usa timer stop per interromperlo.', ' min. Use timer stop to stop it.'), 'accent');
+      }
+    });
+
+    api.register('matrix', {
+      description: description('Pioggia di caratteri a schermo intero', 'Full-screen character rain'),
+      run: function () {
+        if (closeMatrix) closeMatrix();
+        return new Promise(function (resolve) {
+          var overlay = document.createElement('div');
+          overlay.className = 'matrix-overlay';
+          overlay.tabIndex = -1;
+          overlay.setAttribute('role', 'dialog');
+          overlay.setAttribute('aria-modal', 'true');
+          overlay.setAttribute('aria-label', api.t('Animazione Matrix', 'Matrix animation'));
+
+          var canvas = document.createElement('canvas');
+          canvas.className = 'matrix';
+          canvas.setAttribute('aria-hidden', 'true');
+
+          var hint = document.createElement('div');
+          hint.className = 'matrix-hint';
+          hint.id = 'matrix-exit-hint';
+          hint.textContent = api.t('Premi un tasto o tocca per tornare al terminale.', 'Press any key or tap to return to the terminal.');
+          overlay.setAttribute('aria-describedby', hint.id);
+          overlay.append(canvas, hint);
+          document.body.append(overlay);
+
+          var context = canvas.getContext('2d');
+          var frame = 0;
+          var lastFrame = 0;
+          var width = 0;
+          var height = 0;
+          var columns = [];
+          var finished = false;
+          var cell = 16;
+          var words = ['AI', 'PYTHON', 'NEXUS', 'DATA', 'RAG', 'RUN', 'PROMPT', 'PACE'];
+          var palette = window.getComputedStyle(document.documentElement);
+          var foreground = palette.getPropertyValue('--fg').trim() || '#39ff7a';
+          var background = palette.getPropertyValue('--bg').trim() || '#030803';
+          var motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+          function clearCanvas() {
+            context.globalAlpha = 1;
+            context.fillStyle = background;
+            context.fillRect(0, 0, width, height);
+          }
+
+          function drawStatic() {
+            clearCanvas();
+            context.fillStyle = foreground;
+            context.font = '15px monospace';
+            columns.forEach(function (column, index) {
+              var length = randomInteger(5, Math.max(6, Math.floor(height / cell)));
+              var start = randomInteger(-10, 4);
+              for (var row = 0; row < length; row += 1) {
+                context.globalAlpha = 0.15 + (row / length) * 0.75;
+                context.fillText(column.word[row % column.word.length], index * cell, (start + row) * cell);
+              }
+            });
+            context.globalAlpha = 1;
+          }
+
+          function drawFrame(timestamp) {
+            if (finished) return;
+            if (api.reduced()) {
+              drawStatic();
+              frame = 0;
+              return;
+            }
+            if (timestamp - lastFrame >= 55) {
+              lastFrame = timestamp;
+              context.globalAlpha = 0.12;
+              context.fillStyle = background;
+              context.fillRect(0, 0, width, height);
+              context.globalAlpha = 1;
+              context.fillStyle = foreground;
+              context.font = '15px monospace';
+              columns.forEach(function (column, index) {
+                context.fillText(column.word[column.index % column.word.length], index * cell, column.row * cell);
+                column.row += 1;
+                column.index += 1;
+                if (column.row * cell > height && Math.random() > 0.975) {
+                  column.row = 0;
+                  column.word = words[randomInteger(0, words.length - 1)];
+                }
+              });
+            }
+            frame = window.requestAnimationFrame(drawFrame);
+          }
+
+          function resize() {
+            if (!context || finished) return;
+            window.cancelAnimationFrame(frame);
+            frame = 0;
+            width = window.innerWidth;
+            height = window.innerHeight;
+            var pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+            canvas.width = Math.round(width * pixelRatio);
+            canvas.height = Math.round(height * pixelRatio);
+            context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+            columns = Array.from({ length: Math.ceil(width / cell) }, function () {
+              return { row: randomInteger(-35, 0), index: 0, word: words[randomInteger(0, words.length - 1)] };
+            });
+            clearCanvas();
+            lastFrame = 0;
+            if (api.reduced()) drawStatic();
+            else frame = window.requestAnimationFrame(drawFrame);
+          }
+
+          function finish(event) {
+            if (finished) return;
+            finished = true;
+            if (event) {
+              if (event.cancelable) event.preventDefault();
+              event.stopPropagation();
+            }
+            window.cancelAnimationFrame(frame);
+            window.removeEventListener('resize', resize);
+            document.removeEventListener('keydown', finish, true);
+            overlay.removeEventListener('pointerdown', finish);
+            if (motionQuery.removeEventListener) motionQuery.removeEventListener('change', resize);
+            overlay.remove();
+            closeMatrix = null;
+            resolve();
+          }
+
+          closeMatrix = finish;
+          if (!context) {
+            finish();
+            api.write(api.t('La visualizzazione Matrix non è disponibile in questo browser.', 'The Matrix visualization is not available in this browser.'), 'dim');
+            return;
+          }
+          document.addEventListener('keydown', finish, true);
+          overlay.addEventListener('pointerdown', finish);
+          window.addEventListener('resize', resize);
+          if (motionQuery.addEventListener) motionQuery.addEventListener('change', resize);
+          resize();
+          overlay.focus({ preventScroll: true });
+        });
+      }
+    });
+
+    function stopGame() {
+      var wasPlaying = game !== null;
+      game = null;
+      return wasPlaying;
+    }
+
+    function isStopWord(value) {
+      return /^(?:stop|quit|exit|esci|q)$/.test(value.toLowerCase());
+    }
+
+    api.register('play', {
+      description: description('Indovina il numero da 1 a 100', 'Guess the number from 1 to 100'),
+      run: function (args) {
+        if (isStopWord(args.join(' ').trim())) {
+          api.write(stopGame() ? api.t('Partita terminata.', 'Game ended.') : api.t('Nessuna partita in corso.', 'No game is running.'), 'dim');
+          return;
+        }
+        if (args.length && args[0] !== 'new') {
+          api.write(api.t('Uso: play | play new | play stop', 'Usage: play | play new | play stop'), 'dim');
+          return;
+        }
+        game = { target: randomInteger(1, 100), attempts: 0 };
+        api.write(api.t('Ho scelto un numero da 1 a 100. Qual è il tuo primo tentativo?', 'I picked a number from 1 to 100. What is your first guess?'), 'accent');
+        api.write(api.t('Scrivi un numero oppure guess N. Per uscire: play stop.', 'Enter a number or guess N. To leave: play stop.'), 'dim');
+      }
+    });
+
+    api.register('guess', {
+      description: description('Prova un numero durante una partita', 'Try a number during a game'),
+      hidden: true,
+      run: function (args) {
+        var value = args.join(' ').trim();
+        if (isStopWord(value)) {
+          api.write(stopGame() ? api.t('Partita terminata.', 'Game ended.') : api.t('Nessuna partita in corso.', 'No game is running.'), 'dim');
+          return;
+        }
+        if (!game) {
+          api.write(api.t('Avvia una partita con play.', 'Start a game with play.'), 'dim');
+          return;
+        }
+        var number = Number(value);
+        if (!/^\d{1,3}$/.test(value) || !Number.isInteger(number) || number < 1 || number > 100) {
+          api.write(api.t('Inserisci un numero intero da 1 a 100.', 'Enter a whole number from 1 to 100.'), 'warn');
+          return;
+        }
+        game.attempts += 1;
+        if (number < game.target) {
+          api.write(api.t('Il numero è più alto.', 'The number is higher.'));
+          return;
+        }
+        if (number > game.target) {
+          api.write(api.t('Il numero è più basso.', 'The number is lower.'));
+          return;
+        }
+        var attempts = game.attempts;
+        stopGame();
+        api.write(api.t('Indovinato: ', 'You found it: ') + number + '. ' + api.t('Tentativi: ', 'Attempts: ') + attempts + '.', 'accent');
+        var previous = Number(api.storage.get('play-best'));
+        var validRecord = Number.isInteger(previous) && previous > 0;
+        if (!validRecord || attempts < previous) {
+          api.storage.set('play-best', String(attempts));
+          api.write(api.t('Record personale: ', 'Personal best: ') + attempts + '.', 'dim');
+        } else {
+          api.write(api.t('Record personale: ', 'Personal best: ') + previous + '.', 'dim');
+        }
+        api.write(api.t('Per un’altra partita: play.', 'For another game: play.'), 'dim');
+      }
+    });
+
+    var jokes = [
+      ['Ho chiesto al modello una risposta breve. Mi ha proposto un indice.', 'I asked the model for a short answer. It suggested a table of contents.'],
+      ['Il debug conta come allenamento: faccio sempre qualche giro in più.', 'Debugging counts as training: I always end up doing a few extra laps.'],
+      ['Il modello ha molta fiducia in sé. Il test di validazione un po’ meno.', 'The model has plenty of confidence. The validation test is less convinced.'],
+      ['Una query veloce e una corsa lenta: entrambe richiedono più disciplina del previsto.', 'A fast query and a slow run: both take more discipline than expected.'],
+      ['Il prompt era chiarissimo. Poi ho provato a rileggerlo.', 'The prompt was perfectly clear. Then I tried reading it again.'],
+      ['Il mio piano di allenamento ha una dipendenza: trovare il tempo per eseguirlo.', 'My training plan has one dependency: finding the time to run it.']
+    ];
+
+    api.register('joke', {
+      description: description('Una pausa tra AI, codice e corsa', 'A quick break with AI, code and running'),
+      run: function () {
+        if (!jokeDeck.length) {
+          jokeDeck = jokes.map(function (_, index) { return index; });
+          for (var index = jokeDeck.length - 1; index > 0; index -= 1) {
+            var other = randomInteger(0, index);
+            var item = jokeDeck[index];
+            jokeDeck[index] = jokeDeck[other];
+            jokeDeck[other] = item;
+          }
+        }
+        var joke = jokes[jokeDeck.pop()];
+        api.write(api.t(joke[0], joke[1]));
+      }
+    });
+
+    api.register('coffee', {
+      description: description('Prepara un caffè virtuale', 'Brew a virtual coffee'),
+      hidden: true,
+      run: async function () {
+        api.write(api.t('Pausa caffè in preparazione...', 'Preparing a coffee break...'), 'dim');
+        await pause(240);
+        api.write(api.t('Tazzina pronta. Pensieri in riordino.', 'Cup ready. Sorting out a few thoughts.'), 'dim');
+        await pause(300);
+        api.write(api.t('Caffè virtuale servito. Il prossimo prompt può aspettare un minuto.', 'Virtual coffee served. The next prompt can wait a minute.'), 'accent');
+      }
+    });
+
+    api.register('hack', {
+      description: description('Una piccola simulazione cinematografica', 'A little cinematic simulation'),
+      run: async function () {
+        api.write(api.t('SIMULAZIONE LOCALE', 'LOCAL SIMULATION'), 'heading');
+        var steps = [
+          ['Caricamento scenario', 'Loading scenario'],
+          ['Analisi dati dimostrativi', 'Analyzing demonstration data'],
+          ['Generazione risultato', 'Generating result']
+        ];
+        for (var index = 0; index < steps.length; index += 1) {
+          var label = api.t(steps[index][0], steps[index][1]);
+          var line = api.write(label + ' [........]', 'dim');
+          for (var progress = api.reduced() ? 8 : 0; progress <= 8; progress += 1) {
+            line.textContent = label + ' [' + '#'.repeat(progress) + '.'.repeat(8 - progress) + ']';
+            if (progress < 8) await pause(45);
+          }
+        }
+        api.write(api.t('Simulazione completata interamente nel browser.', 'Simulation completed entirely in the browser.'), 'accent');
+      }
+    });
+
+    function onPageHide() {
+      clearTimerInterval();
+      if (closeMatrix) closeMatrix();
+    }
+
+    function onPageShow() {
+      if (timerDeadline) {
+        updateTimer();
+        if (timerDeadline && timerInterval === null) timerInterval = window.setInterval(updateTimer, 1000);
+      }
+    }
+
+    window.addEventListener('pagehide', onPageHide);
+    window.addEventListener('pageshow', onPageShow);
+
+    return {
+      isPlaying: function () { return game !== null; },
+      stop: stopGame,
+      destroy: function () {
+        stopGame();
+        stopTimer();
+        if (closeMatrix) closeMatrix();
+        window.removeEventListener('pagehide', onPageHide);
+        window.removeEventListener('pageshow', onPageShow);
+      }
+    };
+  };
+})();
+
+</script>
+<script>
+/* A small, local terminal UI. Every command is handled here; no shell is executed. */
+(() => {
+  'use strict';
+
+  const data = window.PF_CONTENT;
+  if (!data) return; // The complete HTML profile remains available if a script cannot load.
+  const $ = (selector) => document.querySelector(selector);
+  const crt = $('#crt');
+  const output = $('#output');
+  const viewport = $('#scroll');
+  const form = $('#form');
+  const input = $('#cmd');
+  const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+  const finePointer = matchMedia('(pointer: fine)');
+  const storage = {
+    get(key) { try { return localStorage.getItem(key); } catch { return null; } },
+    set(key, value) { try { localStorage.setItem(key, String(value)); } catch { /* Optional preference. */ } }
+  };
+  const savedLanguage = storage.get('pf.language');
+  let language = ['it', 'en'].includes(savedLanguage) ? savedLanguage : ((navigator.language || 'it').startsWith('it') ? 'it' : 'en');
+  let busy = false;
+  let booting = false;
+  let finishBoot = null;
+  let historyPosition = 0;
+  let draft = '';
+  let revealRow = 0;
+  let extras = {};
+  const history = [];
+  const commands = new Map();
+  const aliases = new Map([
+    ['chi', 'about'], ['bio', 'about'], ['competenze', 'skills'],
+    ['esperienza', 'experience'], ['progetti', 'projects'], ['portfolio', 'projects'],
+    ['contatti', 'contact'], ['formazione', 'education'], ['certificazioni', 'certifications'],
+    ['corsa', 'running'], ['tema', 'theme'], ['lingua', 'lang'], ['aiuto', 'help']
+  ]);
+  const t = (it, en) => language === 'it' ? it : en;
+  const local = (value) => typeof value === 'string' ? value : value[language];
+  const pause = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+  const element = (tag, className = '', text) => {
+    const node = document.createElement(tag);
+    if (className) node.className = className;
+    if (text !== undefined) node.textContent = text;
+    return node;
+  };
+  const scroll = () => { viewport.scrollTop = viewport.scrollHeight; };
+  const focus = () => { if (finePointer.matches && !form.hidden) input.focus({ preventScroll: true }); };
+  function add(node) {
+    node.classList.add('reveal');
+    node.style.setProperty('--row', Math.min(revealRow++, 40));
+    output.append(node);
+    scroll();
+    return node;
+  }
+  const write = (text = '', className = '') => add(element('div', `line ${className}`.trim(), text));
+  const blank = () => write('');
+  function command(name, label = name) {
+    const button = element('button', 'command', label);
+    button.type = 'button';
+    button.dataset.command = name;
+    return button;
+  }
+  function link(url, label) {
+    const anchor = element('a', '', label);
+    anchor.href = url;
+    if (url.startsWith('https://')) { anchor.target = '_blank'; anchor.rel = 'noopener noreferrer'; }
+    return anchor;
+  }
+  function suggest(names) {
+    const row = element('div', 'line dim', t('→ prova: ', '→ try: '));
+    names.forEach((name, index) => { if (index) row.append(' '); row.append(command(name)); });
+    add(row);
+  }
+  function tableRow(label, value) {
+    const row = element('div', 'table-row');
+    row.append(element('span', 'dim', label), typeof value === 'string' ? element('span', '', value) : value);
+    return add(row);
+  }
+  const register = (name, entry) => commands.set(name, entry);
+  const define = (name, it, en, run, hidden = false) => register(name, { description: { it, en }, run, hidden });
+  const canonical = (name) => aliases.get(name) || name;
+
+  function applyLanguage() {
+    document.documentElement.lang = language;
+    input.setAttribute('aria-label', t('Comando del terminale', 'Terminal command'));
+    $('#command-hint').textContent = t('Scrivi help per i comandi. Tab completa, frecce su e giù richiamano la cronologia.', 'Type help for commands. Tab completes; up and down arrows browse history.');
+    $('#chips').setAttribute('aria-label', t('Comandi rapidi', 'Quick commands'));
+    $('#chips').replaceChildren(...['help', 'about', 'projects', 'contact', 'skills'].map((name) => command(name)));
+  }
+  function setTheme(theme) {
+    document.documentElement.dataset.theme = theme;
+    $('meta[name="theme-color"]').content = theme === 'amber' ? '#0a0602' : '#030803';
+    storage.set('pf.theme', theme);
+    // Keep the preference from the previous version compatible.
+    storage.set('phosphor', theme === 'amber' ? 'ambra' : 'verde');
+  }
+
+  define('help', 'elenco dei comandi', 'available commands', () => {
+    const groups = [
+      [t('CHI SONO', 'ABOUT ME'), ['about', 'skills', 'experience', 'projects', 'portfolio', 'stats', 'contact']],
+      [t('PERCORSO', 'BACKGROUND'), ['education', 'certifications', 'running']],
+      ['SHELL', ['ls', 'cat', 'whoami', 'date', 'echo', 'ping', 'system', 'clear']],
+      [t('SITO', 'WEBSITE'), ['lang', 'theme', 'open', 'mail']],
+      [t('ALTRO', 'MORE'), ['matrix', 'joke', 'ascii', 'inspiration', 'hack', 'play', 'weather', 'timer']]
+    ];
+    for (const [title, names] of groups) {
+      const row = element('div', 'help-row');
+      const list = element('div', 'help-list');
+      names.forEach((name) => { const button = command(name); button.title = local(commands.get(canonical(name))?.description || name); list.append(button); });
+      row.append(element('span', 'dim', title), list);
+      add(row);
+    }
+    blank();
+    write(t('Tab completa · ↑ ↓ cronologia · Ctrl+L pulisce · Esc interrompe gli effetti', 'Tab completes · ↑ ↓ history · Ctrl+L clears · Esc exits effects'), 'dim');
+    write(t('Funzionano anche: chi, esperienza, progetti, formazione, competenze, certificazioni, contatti, corsa, tema.', 'Italian aliases also work: chi, esperienza, progetti, formazione, competenze, certificazioni, contatti, corsa, tema.'), 'dim');
+  });
+
+  define('about', 'qualcosa su di me', 'a little about me', () => {
+    const section = element('section', 'about');
+    section.setAttribute('aria-label', data.name);
+    const portrait = element('pre', 'portrait', data.portrait);
+    portrait.setAttribute('aria-hidden', 'true');
+    const bio = element('div', 'bio');
+    bio.append(element('h2', 'heading', data.name), element('div', 'dim', local(data.role)), element('div', 'dim', local(data.location)));
+    data.bio[language].forEach((paragraph) => bio.append(element('p', '', paragraph)));
+    section.append(portrait, bio);
+    add(section);
+    suggest(['skills', 'projects', 'contact']);
+  });
+
+  define('skills', 'strumenti e tecnologie', 'tools and technologies', () => {
+    data.skills.forEach((group, index) => {
+      if (index) blank();
+      write(local(group.title), 'heading');
+      group.items.forEach((item) => {
+        const row = element('div', 'skill');
+        let name = item.name;
+        if (language === 'en') name = ({ agenti: 'agents', Italiano: 'Italian', Inglese: 'English' })[name] || name;
+        row.append(element('span', '', name), element('span', 'dim', local(item.note)));
+        add(row);
+      });
+    });
+    blank(); suggest(['experience', 'certifications', 'projects']);
+  });
+
+  define('experience', 'esperienze professionali', 'professional experience', () => {
+    const graph = element('section', 'graph');
+    graph.setAttribute('aria-label', t('Esperienze professionali', 'Professional experience'));
+    data.experience.forEach((job) => {
+      const row = element('div', 'commit');
+      const rail = element('div', 'rail'); rail.setAttribute('aria-hidden', 'true');
+      const content = element('div', 'commit-content');
+      content.append(element('div', 'dim', local(job.dates)), element('h2', 'heading', `${job.role} · ${job.company}`), element('div', 'dim', job.location));
+      job.description[language].forEach((description) => content.append(element('div', 'line', description)));
+      row.append(rail, content); graph.append(row);
+    });
+    add(graph); suggest(['education', 'projects', 'contact']);
+  });
+
+  define('education', 'studi universitari', 'university education', () => {
+    data.education.forEach((degree, index) => {
+      if (index) blank();
+      write(local(degree.title), 'heading');
+      write(`  ${degree.school} · ${degree.dates}`, 'dim');
+    });
+    blank(); suggest(['certifications', 'experience']);
+  });
+  define('certifications', 'certificazioni Microsoft', 'Microsoft certifications', () => {
+    data.certifications.forEach((certificate) => tableRow(certificate.code, certificate.title));
+  });
+  define('running', 'il progetto Lisbona 21K', 'the Lisbon 21K project', () => {
+    data.running[language].forEach((text) => write(text));
+    const app = data.projects.find((project) => project.slug === 'lisbona-21k');
+    add(element('div', 'line')).append(link(app.url, t('Apri l’app Lisbona 21K', 'Open the Lisbon 21K app')));
+  });
+
+  define('projects', 'progetti e dettagli', 'projects and details', (args) => {
+    const slug = (args[0] || '').toLowerCase().replace(/\/$/, '');
+    if (slug) {
+      const project = data.projects.find((item) => item.slug === slug);
+      if (!project) { write(t(`Progetto non trovato: ${slug}`, `Project not found: ${slug}`), 'error'); suggest(['projects']); return; }
+      write(project.title, 'heading');
+      write(local(project.description));
+      if (project.url) { blank(); add(element('div', 'line')).append(link(project.url, project.url)); }
+      blank(); suggest(['projects', 'contact']);
+      return;
+    }
+    const groups = [['work', t('LAVORO', 'WORK')], ['research', t('RICERCA E UNIVERSITÀ', 'RESEARCH & UNIVERSITY')], ['personal', t('PERSONALI', 'PERSONAL')]];
+    groups.forEach(([key, title], index) => {
+      if (index) blank();
+      write(title, 'heading');
+      data.projects.filter((project) => project.group === key).forEach((project) => {
+        const row = element('div', 'project');
+        row.style.setProperty('--slug-width', '22ch');
+        row.append(command(`projects ${project.slug}`, `${project.slug}/`), element('span', 'dim', local(project.description)));
+        add(row);
+      });
+    });
+    blank(); write(t('Tocca un progetto oppure scrivi projects <nome> per aprirne il dettaglio.', 'Tap a project or type projects <name> to see its details.'), 'dim');
+  });
+  define('contact', 'come trovarmi', 'get in touch', () => {
+    data.contacts.forEach((contact) => tableRow(local(contact.label), link(contact.url, contact.value)));
+  });
+
+  define('stats', 'il profilo in numeri', 'the profile in numbers', async () => {
+    tableRow(t('Progetti', 'Projects'), String(data.projects.length));
+    tableRow(t('Certificazioni', 'Certificates'), String(data.certifications.length));
+    tableRow(t('Lauree', 'Degrees'), String(data.education.length));
+    const status = write(t('Lettura del profilo pubblico GitHub…', 'Reading the public GitHub profile…'), 'dim');
+    try {
+      const profile = await fetchJSON('https://api.github.com/users/pierlucafaccin');
+      if (typeof profile.public_repos !== 'number' || typeof profile.followers !== 'number') throw new Error('Invalid profile');
+      status.textContent = t('GitHub · dati pubblici aggiornati alla richiesta', 'GitHub · public data retrieved now');
+      tableRow(t('Repository', 'Repositories'), String(profile.public_repos));
+      tableRow('Follower', String(profile.followers));
+    } catch { status.textContent = t('GitHub non è raggiungibile al momento. I dati del sito restano disponibili.', 'GitHub is currently unavailable. The site profile remains available.'); }
+    add(element('div', 'line')).append(link('https://github.com/pierlucafaccin', 'github.com/pierlucafaccin'));
+  });
+
+  define('ls', 'file e cartelle', 'files and directories', (args) => {
+    const path = args.find((arg) => !arg.startsWith('-')) || '';
+    if (/^(\.?\/?)(progetti|projects)\/?$/.test(path)) { commands.get('projects').run([]); return; }
+    if (path && !['/', '.', '~', '/home/pierluca'].includes(path)) { write(`ls: ${path}: ${t('percorso non trovato', 'path not found')}`, 'error'); return; }
+    write('about.txt  skills.txt  experience.log  education.txt');
+    write('certifications.txt  running.txt  contact.txt  projects/');
+    if (args.some((arg) => arg.includes('a') && arg.startsWith('-'))) write('.segreti  .theme', 'dim');
+  });
+  define('cat', 'leggi un file', 'read a file', (args) => {
+    const filename = (args[0] || '').toLowerCase().replace(/^\.\//, '').replace(/\/$/, '');
+    const files = new Map([
+      ['about.txt', 'about'], ['skills.txt', 'skills'], ['experience.log', 'experience'],
+      ['education.txt', 'education'], ['certifications.txt', 'certifications'], ['running.txt', 'running'],
+      ['contact.txt', 'contact'], ['contatti', 'contact']
+    ]);
+    if (files.has(filename)) return commands.get(files.get(filename)).run([]);
+    if (filename === '.segreti') { write(local(data.secrets)); suggest(['coffee', 'matrix', 'play']); return; }
+    if (filename === '.theme') { write(document.documentElement.dataset.theme || 'green'); return; }
+    if (filename === 'cv.pdf') { write(t('Il curriculum è consultabile nelle sezioni qui sotto.', 'The CV is available through the sections below.')); suggest(['experience', 'education', 'skills', 'certifications']); return; }
+    if (['projects', 'progetti'].includes(filename)) { write(t('È una cartella. Usa ls projects/ oppure projects.', 'This is a directory. Use ls projects/ or projects.'), 'warn'); return; }
+    write(filename ? `cat: ${filename}: ${t('file non trovato', 'file not found')}` : t('Uso: cat <file>. Prova ls per vedere i file.', 'Usage: cat <file>. Try ls to list files.'), 'error');
+  });
+  define('whoami', 'utente corrente', 'current user', () => write('pierluca'));
+  define('pwd', 'cartella corrente', 'current directory', () => write('/home/pierluca'), true);
+  define('date', 'data e ora', 'date and time', () => write(new Date().toLocaleString(language === 'it' ? 'it-IT' : 'en-GB', { dateStyle: 'full', timeStyle: 'short', timeZone: 'Europe/Rome' }) + ' · Europe/Rome'));
+  define('echo', 'ripeti un messaggio', 'repeat a message', (args) => write(args.join(' ')));
+  define('system', 'informazioni sul terminale', 'terminal information', () => {
+    write(data.system, 'heading');
+    tableRow(t('Utente', 'User'), 'pierluca');
+    tableRow(t('Località', 'Location'), 'Valdagno (VI), Italia');
+    tableRow(t('Lingua', 'Language'), language);
+    tableRow(t('Tema', 'Theme'), document.documentElement.dataset.theme);
+    tableRow(t('Movimento', 'Motion'), reducedMotion.matches ? t('ridotto', 'reduced') : t('attivo', 'enabled'));
+    tableRow(t('Sessione', 'Session'), t('terminale nel browser', 'browser terminal'));
+  });
+  define('clear', 'pulisci il terminale', 'clear the terminal', () => { output.replaceChildren(); revealRow = 0; });
+  define('ping', 'un ping dimostrativo', 'a demo ping', async (args) => {
+    write(t('Ping dimostrativo: nessun pacchetto viene inviato.', 'Demo ping: no packets are sent.'), 'dim');
+    const destination = args[0] || 'faccin.local';
+    for (let count = 1; count <= 3; count++) { write(`${destination}: seq=${count} · ${t('risposta simulata', 'simulated reply')}`); if (!reducedMotion.matches) await pause(180); }
+  });
+  define('theme', 'fosfori verdi o ambra', 'green or amber phosphor', (args) => {
+    const themes = new Map([['verde', 'green'], ['green', 'green'], ['ambra', 'amber'], ['amber', 'amber']]);
+    const theme = themes.get((args[0] || '').toLowerCase());
+    if (!theme) { write(t('Uso: theme green | theme amber (oppure tema verde | tema ambra)', 'Usage: theme green | theme amber')); return; }
+    setTheme(theme);
+    write(theme === 'amber' ? t('Fosfori ambra attivati.', 'Amber phosphor enabled.') : t('Fosfori verdi attivati.', 'Green phosphor enabled.'));
+  });
+  define('lang', 'lingua italiana o inglese', 'Italian or English', (args) => {
+    if (!['it', 'en'].includes((args[0] || '').toLowerCase())) { write('lang it | lang en'); return; }
+    language = args[0].toLowerCase(); storage.set('pf.language', language); applyLanguage();
+    write(t('Lingua impostata: italiano.', 'Language set to English.')); suggest(['about', 'help']);
+  });
+  define('open', 'apri un progetto o un contatto', 'open a project or contact', (args) => {
+    const target = (args[0] || '').toLowerCase().replace(/\/$/, '');
+    const project = data.projects.find((item) => item.slug === target);
+    const contact = data.contacts.find((item) => item.key === target);
+    const url = project?.url || contact?.url;
+    if (url) { add(element('div', 'line')).append(link(url, t('Apri ', 'Open ') + (project?.title || contact.value))); return; }
+    if (project) { commands.get('projects').run([project.slug]); return; }
+    write(t('Uso: open <progetto> | github | linkedin | email | lavoro', 'Usage: open <project> | github | linkedin | email | lavoro'), 'dim');
+  });
+  define('mail', 'scrivimi una email', 'send me an email', () => {
+    const contact = data.contacts.find((item) => item.key === 'email');
+    add(element('div', 'line')).append(link(contact.url, contact.value));
+  });
+  define('ascii', 'ritratto e monogramma', 'portrait and monogram', (args) => {
+    const pre = element('pre', 'art');
+    if (['pf', 'logo'].includes((args[0] || '').toLowerCase())) {
+      pre.textContent = '██████╗ ███████╗\n██╔══██╗██╔════╝\n██████╔╝█████╗  \n██╔═══╝ ██╔══╝  \n██║     ██║     \n╚═╝     ╚═╝     ';
+      pre.setAttribute('aria-label', 'PF');
+    } else { pre.textContent = data.portrait; pre.classList.add('portrait'); pre.setAttribute('aria-label', t('Ritratto ASCII di Pierluca Faccin', 'ASCII portrait of Pierluca Faccin')); }
+    add(pre);
+    write(t('Prova anche ascii pf.', 'Also try ascii pf.'), 'dim');
+  });
+  define('inspiration', 'il riferimento del progetto', 'the design reference', () => {
+    write(t('Questo terminale riprende lo stile del sito di Alberto Peripolli, con il mio profilo e i miei progetti.', 'This terminal follows the visual style of Alberto Peripolli’s website, with my own profile and projects.'));
+    add(element('div', 'line')).append(link('https://www.albertoperipolli.com/', 'albertoperipolli.com'));
+  });
+  define('weather', 'meteo a Valdagno', 'weather in Valdagno', async () => {
+    const status = write(t('Richiesta meteo per Valdagno…', 'Fetching the weather for Valdagno…'), 'dim');
+    try {
+      const result = await fetchJSON('https://api.open-meteo.com/v1/forecast?latitude=45.645&longitude=11.299&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m&timezone=Europe%2FRome');
+      const current = result.current;
+      if (!current || typeof current.temperature_2m !== 'number') throw new Error('Invalid weather');
+      status.textContent = `Valdagno (VI) · ${current.time.replace('T', ' ')} · Europe/Rome`;
+      tableRow(t('Temperatura', 'Temperature'), `${current.temperature_2m} °C`);
+      tableRow(t('Umidità', 'Humidity'), `${current.relative_humidity_2m} %`);
+      tableRow(t('Vento', 'Wind'), `${current.wind_speed_10m} km/h`);
+      const code = current.weather_code;
+      const condition = code === 0 ? t('sereno', 'clear') : code <= 3 ? t('nuvoloso', 'cloudy') : [45, 48].includes(code) ? t('nebbia', 'fog') : [71, 73, 75, 77, 85, 86].includes(code) ? t('neve', 'snow') : code >= 95 ? t('temporali', 'thunderstorms') : t('precipitazioni', 'precipitation');
+      tableRow(t('Condizioni', 'Conditions'), condition);
+      add(element('div', 'line dim')).append(t('Fonte: ', 'Source: '), link('https://open-meteo.com/', 'Open-Meteo'));
+    } catch { status.textContent = t('Meteo non disponibile al momento. Riprova più tardi.', 'Weather is currently unavailable. Please try again later.'); }
+  });
+  define('sudo', '', '', () => write(t('pierluca non è nel file sudoers. L’incidente verrà segnalato al SOC.', 'pierluca is not in the sudoers file. This incident will be reported to the SOC.'), 'error'), true);
+  define('vim', '', '', () => write(t('Per uscire: :q! Per tornare ai progetti: projects.', 'To exit: :q! To return to projects: projects.')), true);
+  define('git', '', '', (args) => write(args[0] === 'status' ? t('Sul branch vita-reale. Prossimo commit: una corsa.', 'On branch real-life. Next commit: a run.') : t('Nessun repository da modificare qui. Prova open github.', 'There is no repository to edit here. Try open github.')), true);
+
+  async function fetchJSON(url) {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 6500);
+    try { const response = await fetch(url, { signal: controller.signal, credentials: 'omit', referrerPolicy: 'no-referrer' }); if (!response.ok) throw new Error(String(response.status)); return await response.json(); }
+    finally { clearTimeout(timeout); }
+  }
+  function welcome() {
+    blank();
+    write(t('Benvenuto. Scrivi "help" oppure tocca un comando:', 'Welcome. Type "help" or tap a command:'));
+    const row = element('div', 'line');
+    ['about', 'projects', 'contact'].forEach((name, index) => { if (index) row.append(' '); row.append(command(name)); });
+    add(row); blank();
+  }
+  function hasBooted() { try { return sessionStorage.getItem('pf.booted') === '1'; } catch { return false; } }
+  function boot(force = false) {
+    booting = true; form.hidden = true; $('#chips').hidden = true; output.replaceChildren(); revealRow = 0;
+    const lines = [data.system, t('Controllo memoria ........ OK', 'Memory check ............. OK'), t('Caricamento modelli ...... OK', 'Loading models ........... OK'), t('Montaggio /projects ...... OK', 'Mounting /projects ....... OK'), t('Avvio servizi AI ......... OK', 'Starting AI services ..... OK')];
+    const animate = !reducedMotion.matches && (force || !hasBooted());
+    return new Promise((resolve) => {
+      let next = 0;
+      let timeout;
+      const complete = () => {
+        clearTimeout(timeout);
+        if (!booting) return;
+        while (next < (animate ? lines.length : 1)) write(lines[next++], 'dim');
+        booting = false; finishBoot = null;
+        try { sessionStorage.setItem('pf.booted', '1'); } catch { /* Storage is optional. */ }
+        revealRow = 0; welcome(); form.hidden = false; $('#chips').hidden = false; scroll(); focus(); resolve();
+      };
+      finishBoot = complete;
+      const tick = () => {
+        if (next >= lines.length) { complete(); return; }
+        write(lines[next++], 'dim');
+        timeout = setTimeout(tick, 380);
+      };
+      if (animate) tick(); else complete();
+    });
+  }
+  define('reboot', '', '', async () => { extras.stop?.(); await boot(true); }, true);
+  define('shutdown', '', '', async () => {
+    extras.stop?.(); crt.classList.add('crt-off');
+    if (!reducedMotion.matches) await pause(650);
+    crt.hidden = true;
+    const screen = element('div', 'power-screen');
+    const restart = element('button', 'command', t('Premi un tasto o tocca per riavviare.', 'Press a key or tap to restart.'));
+    restart.type = 'button'; screen.append(restart); document.body.append(screen); restart.focus();
+    await new Promise((resolve) => {
+      const resume = (event) => {
+        if (event.type === 'keydown' && (event.ctrlKey || event.altKey || event.metaKey || event.key === 'Tab')) return;
+        event.preventDefault(); document.removeEventListener('keydown', resume); screen.removeEventListener('click', resume);
+        screen.remove(); crt.classList.remove('crt-off'); crt.hidden = false; resolve();
+      };
+      document.addEventListener('keydown', resume); screen.addEventListener('click', resume);
+    });
+    await boot(true);
+  }, true);
+  define('exit', '', '', () => commands.get('shutdown').run([]), true);
+
+  if (typeof window.PFExtras === 'function') {
+    extras = window.PFExtras({ register, write, blank, command, add, t, lang: () => language, reduced: () => reducedMotion.matches, focus, scroll, input, crt, timer: $('#timer'), storage }) || {};
+  }
+
+  function editDistance(left, right) {
+    let previous = Array.from({ length: right.length + 1 }, (_, index) => index);
+    for (let i = 0; i < left.length; i++) { const row = [i + 1]; for (let j = 0; j < right.length; j++) row.push(Math.min(row[j] + 1, previous[j + 1] + 1, previous[j] + (left[i] === right[j] ? 0 : 1))); previous = row; }
+    return previous[right.length];
+  }
+  async function run(raw) {
+    if (busy || booting) return;
+    const text = raw.trim().slice(0, 500);
+    if (!text) return;
+    busy = true; form.hidden = true; revealRow = 0;
+    history.push(text); if (history.length > 100) history.shift(); historyPosition = history.length; draft = '';
+    const echo = element('div', 'line echo'); echo.append(element('span', 'prompt', data.prompt), ` ${text}`); add(echo);
+    input.value = '';
+    let [name, ...args] = text.split(/\s+/);
+    name = canonical(name.toLowerCase());
+    if (/^\d+$/.test(name) && extras.isPlaying?.()) { args = [name]; name = 'guess'; }
+    try {
+      if (commands.has(name)) await commands.get(name).run(args);
+      else {
+        write(t(`${name}: comando non trovato.`, `${name}: command not found.`), 'error');
+        const options = [...commands.keys(), ...aliases.keys()].filter((candidate) => !commands.get(canonical(candidate))?.hidden);
+        const close = options.map((candidate) => [candidate, editDistance(name, candidate)]).sort((a, b) => a[1] - b[1])[0];
+        if (close && close[1] <= 2) suggest([close[0]]); else suggest(['help']);
+      }
+    } catch (error) {
+      write(t('Il comando non è riuscito. Puoi continuare con help.', 'The command could not finish. You can continue with help.'), 'error');
+      console.error('Terminal command failed:', name, error);
+    } finally { busy = false; form.hidden = false; scroll(); focus(); }
+  }
+
+  function completeInput() {
+    const value = input.value.toLowerCase();
+    if (!value.trim()) return false;
+    const words = value.split(/\s+/);
+    let choices;
+    let prefix = '';
+    if (words.length === 1) choices = [...commands.keys(), ...aliases.keys()].filter((name) => !commands.get(canonical(name))?.hidden && name.startsWith(value));
+    else {
+      const name = canonical(words[0]); const part = words.at(-1); prefix = words.slice(0, -1).join(' ') + ' ';
+      const dictionary = {
+        projects: data.projects.map((item) => item.slug), open: [...data.projects.map((item) => item.slug), ...data.contacts.map((item) => item.key)],
+        cat: ['about.txt', 'skills.txt', 'experience.log', 'education.txt', 'certifications.txt', 'running.txt', 'contact.txt', '.segreti', '.theme'],
+        ls: ['projects/', '-a'], lang: ['it', 'en'], theme: ['green', 'amber', 'verde', 'ambra'], timer: ['stop', 'status'], play: ['stop'], ascii: ['pf', 'portrait']
+      };
+      choices = (Object.hasOwn(dictionary, name) ? dictionary[name] : []).filter((option) => option.startsWith(part));
+    }
+    if (!choices.length) return false;
+    if (choices.length === 1) input.value = prefix + choices[0];
+    else {
+      let common = choices[0];
+      while (!choices.every((choice) => choice.startsWith(common))) common = common.slice(0, -1);
+      input.value = prefix + common; revealRow = 0; write(choices.join('  '), 'dim'); scroll();
+    }
+    return true;
+  }
+
+  form.addEventListener('submit', (event) => { event.preventDefault(); void run(input.value); });
+  input.addEventListener('keydown', (event) => {
+    if (event.isComposing) return;
+    if (event.key === 'ArrowUp' && history.length) {
+      event.preventDefault(); if (historyPosition === history.length) draft = input.value;
+      historyPosition = Math.max(0, historyPosition - 1); input.value = history[historyPosition]; input.setSelectionRange(input.value.length, input.value.length);
+    } else if (event.key === 'ArrowDown' && history.length) {
+      event.preventDefault(); historyPosition = Math.min(history.length, historyPosition + 1); input.value = historyPosition === history.length ? draft : history[historyPosition]; input.setSelectionRange(input.value.length, input.value.length);
+    } else if (event.key === 'Tab' && !event.shiftKey && completeInput()) event.preventDefault();
+    else if (event.key.toLowerCase() === 'l' && event.ctrlKey) { event.preventDefault(); void run('clear'); }
+  });
+  crt.addEventListener('click', (event) => {
+    if (booting) { finishBoot?.(); return; }
+    const button = event.target.closest('[data-command]');
+    if (button) { event.preventDefault(); void run(button.dataset.command); return; }
+    if (!event.target.closest('a, button, input, label') && !getSelection()?.toString()) focus();
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.isComposing || event.ctrlKey || event.altKey || event.metaKey || ['Shift', 'Control', 'Alt', 'Meta', 'Tab'].includes(event.key)) return;
+    if (booting) { finishBoot?.(); return; }
+    if (busy || crt.hidden || event.key.length !== 1) return;
+    if (!event.target.closest('input, textarea, button, a, select, [contenteditable="true"]') && !getSelection()?.toString()) focus();
+  });
+  reducedMotion.addEventListener('change', () => { if (reducedMotion.matches) finishBoot?.(); });
+  let konami = [];
+  const secret = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+  document.addEventListener('keydown', (event) => {
+    if (busy || booting) return;
+    konami.push(event.key); if (konami.length > secret.length) konami.shift();
+    if (secret.every((key, index) => konami[index] === key)) { konami = []; input.value = ''; void run('theme amber'); }
+  });
+
+  applyLanguage();
+  setTheme(storage.get('pf.theme') === 'amber' || storage.get('phosphor') === 'ambra' ? 'amber' : 'green');
+  $('#profile').hidden = true;
+  document.body.classList.add('terminal-ready');
+  crt.hidden = false;
+  void boot();
+})();
+
+</script>
 </body>
 </html>
