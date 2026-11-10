@@ -1,6 +1,6 @@
 # Faccin OS
 
-Portfolio personale di Pierluca Faccin, AI Solution Engineer, ispirato alle interfacce desktop degli anni Novanta. Versione 3 del 10 novembre 2026.
+Portfolio personale di Pierluca Faccin, AI Solution Engineer, ispirato alle interfacce desktop degli anni Novanta. Versione 4 del 10 novembre 2026.
 
 ## Aprire il sito
 
@@ -43,7 +43,8 @@ I collegamenti interni utilizzano frammenti URL e funzionano anche senza riscrit
 | `assets/os.css` | Aspetto desktop, finestre, contenuti e adattamento mobile. |
 | `assets/sport.css` | Impaginazione e adattamento mobile della sezione Sport. |
 | `assets/identity.css` | Identità del desktop e cornice del ritratto personale. |
-| `assets/brand-mark.svg` | Simbolo originale di Faccin OS, coerente con l’interfaccia retro. |
+| `assets/faccin-os-logo.png` | Logo scelto dall’autore, con sfondo trasparente, scritta FaccinOS e slogan. |
+| `assets/favicon.svg` | Icona compatta derivata dai colori e dalla forma del logo scelto. |
 | `assets/pierluca-win95.png` | Ritratto in stile Windows 95 ricavato dalla fotografia fornita dall’autore. |
 | `assets/icons.js` | Icone pixel originali in SVG. |
 | `index.html` | Metadati e versione testuale accessibile senza JavaScript. |
@@ -72,7 +73,9 @@ AI-102 e AI-900 erano già dichiarate nel sito originale. Non sono state aggiunt
 
 ### Identità e sport
 
-La fotografia di riferimento è stata fornita direttamente dall’autore per sostituire il monogramma nella scheda personale. Il ritratto mantiene la persona come riferimento e adotta un trattamento bitmap coerente con l’interfaccia. Il simbolo di Faccin OS è originale e non è il logo Microsoft Windows.
+La fotografia di riferimento è stata fornita direttamente dall’autore per sostituire il monogramma nella scheda personale. Il ritratto mantiene la persona come riferimento e adotta un trattamento bitmap coerente con l’interfaccia.
+
+Il logo del desktop utilizza l’immagine scelta e fornita da Pierluca: bandiera a quattro colori con scia di pixel, scritta FaccinOS e slogan “Il mio mondo. Una finestra alla volta.”. Il gruppo centrale è stato isolato su sfondo trasparente con ImageGen, eliminando cielo, fascia inferiore e firma duplicata nell’angolo superiore. Il prompt usato è in [docs/logo-generation.md](docs/logo-generation.md). Il CSS applica un leggero contorno luminoso per mantenere leggibili le scritte sul desktop scuro. Il precedente `assets/brand-mark.svg` è conservato come asset della v3 e non viene più usato nell’interfaccia.
 
 Il ritratto è stato generato con lo strumento integrato ImageGen. Il prompt completo è conservato in [docs/portrait-generation.md](docs/portrait-generation.md); la foto originale non viene inclusa nella distribuzione.
 
